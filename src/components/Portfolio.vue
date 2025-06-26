@@ -51,7 +51,7 @@
           </div>
         </v-tab>
 
-        <v-tab title="design">
+        <v-tab title="personal projects">
           <div class="row">
             <div
               v-for="(design, idx) in desgin_info"

@@ -39,13 +39,6 @@
             </button>
             <button
               class="btn btn-outline-secondary mx-2"
-              @click="open('angellist')"
-              v-tooltip.bottom="'AngelList'"
-            >
-              <i class="fab fa-angellist"></i>
-            </button>
-            <button
-              class="btn btn-outline-secondary mx-2"
               @click="open('resume')"
               v-tooltip.bottom="'Resume'"
             >
@@ -80,7 +73,6 @@ export default {
       name: info.name,
       linkedin: info.links.linkedin,
       github: info.links.github,
-      angellist: info.links.angellist,
       resume: info.links.resume
     };
   },
@@ -92,9 +84,6 @@ export default {
           break;
         case "github":
           window.open(this.github, "_blank");
-          break;
-        case "angellist":
-          window.open(this.angellist, "_blank");
           break;
         case "resume":
           const link = document.createElement('a');

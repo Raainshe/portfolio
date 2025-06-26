@@ -192,7 +192,7 @@ let info = {
       name: "SBJ Application Form",
       pictures: [
         {
-          img: require("./src/assets/ryan.jpg")
+          img: require("./src/assets/SBJ.png")
         }
       ],
       technologies: ["Node.js", "Express.js", "Vue.js 3", "MongoDB", "Mongoose", "Passport.js", "SendGrid", "Google Drive API", "Trello API", "Bootstrap 5", "Pinia", "Axios", "Multer", "Heroku"],
@@ -204,7 +204,7 @@ let info = {
         "A comprehensive loan application form system with integration to Run A Loan API. Features include user authentication, file uploads, digital signatures, automated data synchronization, Google Drive integration for document storage, and Trello integration for workflow management. Built with Vue.js frontend and Node.js backend, featuring real-time form validation, email notifications via SendGrid, and scheduled API updates."
     },
     {
-      name: "BTECSolution",
+      name: "BTEC Solution",
       pictures: [
         {
           img: require("./src/assets/btecsolutions.png")

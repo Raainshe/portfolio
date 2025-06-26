@@ -145,8 +145,8 @@ jobs:
         port: ${{ secrets.PORT }}
         source: "dist/*"
         target: "/tmp/vue-deploy/"
-        timeout: 300
-        command_timeout: 300
+        timeout: "300s"
+        command_timeout: "300s"
         
     - name: Finalize deployment
       if: success()

@@ -67,7 +67,7 @@ let info = {
       position: "Web Developer",
       description:
         "Performed full-stack development duties for client websites. Implemented and integrated various APIs. Conducted testing, bug fixes, and regular content updates.",
-      skills: ["Full Stack Development", "API Integration", "Testing", "Bug Fixes"]
+      skills: ["Full Stack Development", "API Integration", "Testing", "Bug Fixes", "Project Management"]
     },
     {
       name: "CTU Training Solutions",

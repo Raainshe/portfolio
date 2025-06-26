@@ -192,6 +192,22 @@ jobs:
             exit 1
           fi
           
+          # Verify SSL configuration is still intact
+          echo "Verifying SSL configuration..."
+          if grep -q "ssl_certificate" /etc/nginx/sites-available/default; then
+            echo "✅ SSL configuration is preserved"
+          else
+            echo "⚠️  SSL configuration may have been lost"
+          fi
+          
+          # Test HTTPS accessibility
+          echo "Testing HTTPS accessibility..."
+          if curl -s -o /dev/null -w "%{http_code}" https://ryanmakoni.live | grep -q "200\|301\|302"; then
+            echo "✅ HTTPS is working correctly"
+          else
+            echo "⚠️  HTTPS may not be working"
+          fi
+          
           # Clean up
           echo "Cleaning up temporary files..."
           rm -rf /tmp/vue-deploy

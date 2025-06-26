@@ -31,72 +31,87 @@ jobs:
           echo "❌ HOST secret is missing"
           exit 1
         else
-          echo "✅ HOST secret is available"
+          echo "✅ HOST secret is available: ${{ secrets.HOST }}"
         fi
         
         if [ -z "${{ secrets.USERNAME }}" ]; then
           echo "❌ USERNAME secret is missing"
           exit 1
         else
-          echo "✅ USERNAME secret is available"
+          echo "✅ USERNAME secret is available: ${{ secrets.USERNAME }}"
         fi
         
         if [ -z "${{ secrets.SSH_KEY }}" ]; then
           echo "❌ SSH_KEY secret is missing"
           exit 1
         else
-          echo "✅ SSH_KEY secret is available"
+          echo "✅ SSH_KEY secret is available (length: ${#SSH_KEY} chars)"
         fi
         
         if [ -z "${{ secrets.PORT }}" ]; then
           echo "❌ PORT secret is missing"
           exit 1
         else
-          echo "✅ PORT secret is available"
+          echo "✅ PORT secret is available: ${{ secrets.PORT }}"
         fi
         
         echo "All secrets are available. Proceeding with deployment..."
       
-    - name: Test SSH connectivity
+    - name: Test basic connectivity
       run: |
-        echo "Testing SSH connectivity to ${{ secrets.HOST }}:${{ secrets.PORT }}..."
+        echo "Testing basic network connectivity to ${{ secrets.HOST }}..."
+        
+        # Test if we can reach the host at all
+        if ping -c 3 ${{ secrets.HOST }} > /dev/null 2>&1; then
+          echo "✅ Ping successful to ${{ secrets.HOST }}"
+        else
+          echo "❌ Ping failed to ${{ secrets.HOST }}"
+          echo "This suggests a network connectivity issue"
+        fi
+        
+        # Test if the port is reachable
+        if nc -z -w 10 ${{ secrets.HOST }} ${{ secrets.PORT }}; then
+          echo "✅ Port ${{ secrets.PORT }} is reachable on ${{ secrets.HOST }}"
+        else
+          echo "❌ Port ${{ secrets.PORT }} is not reachable on ${{ secrets.HOST }}"
+          echo "This suggests a firewall or SSH service issue"
+        fi
+      
+    - name: Test SSH connection with verbose output
+      run: |
+        echo "Testing SSH connection with verbose output..."
         
         # Create a temporary SSH key file
         echo "${{ secrets.SSH_KEY }}" > /tmp/deploy_key
         chmod 600 /tmp/deploy_key
         
-        # Test SSH connection
-        timeout 30 ssh -i /tmp/deploy_key -o StrictHostKeyChecking=no -o ConnectTimeout=10 -p ${{ secrets.PORT }} ${{ secrets.USERNAME }}@${{ secrets.HOST }} "echo 'SSH connection successful'"
+        # Test SSH with verbose output to see what's happening
+        timeout 60 ssh -v -i /tmp/deploy_key \
+          -o StrictHostKeyChecking=no \
+          -o ConnectTimeout=30 \
+          -o ServerAliveInterval=60 \
+          -o ServerAliveCountMax=3 \
+          -p ${{ secrets.PORT }} \
+          ${{ secrets.USERNAME }}@${{ secrets.HOST }} \
+          "echo 'SSH connection successful'"
         
-        if [ $? -eq 0 ]; then
+        SSH_EXIT_CODE=$?
+        
+        if [ $SSH_EXIT_CODE -eq 0 ]; then
           echo "✅ SSH connection test passed"
         else
-          echo "❌ SSH connection test failed"
-          echo "This could be due to:"
-          echo "1. Firewall blocking connections"
-          echo "2. SSH service not running"
-          echo "3. Incorrect host/port/credentials"
-          echo "4. Network connectivity issues"
-          exit 1
-        fi
-        
-        # Test SCP specifically
-        echo "Testing SCP connectivity..."
-        timeout 30 scp -i /tmp/deploy_key -o StrictHostKeyChecking=no -o ConnectTimeout=10 -P ${{ secrets.PORT }} -r /tmp/deploy_key ${{ secrets.USERNAME }}@${{ secrets.HOST }}:/tmp/test_scp
-        
-        if [ $? -eq 0 ]; then
-          echo "✅ SCP connection test passed"
-          # Clean up test file
-          ssh -i /tmp/deploy_key -o StrictHostKeyChecking=no -o ConnectTimeout=10 -p ${{ secrets.PORT }} ${{ secrets.USERNAME }}@${{ secrets.HOST }} "rm -f /tmp/test_scp"
-        else
-          echo "❌ SCP connection test failed"
-          echo "SCP might be blocked or not working properly"
+          echo "❌ SSH connection test failed with exit code: $SSH_EXIT_CODE"
+          echo "Exit code meanings:"
+          echo "  124 = timeout"
+          echo "  255 = connection refused/network error"
+          echo "  1 = authentication failed"
         fi
         
         # Clean up
         rm -f /tmp/deploy_key
       
     - name: Deploy to server
+      if: success()
       uses: appleboy/ssh-action@v1.0.3
       with:
         host: ${{ secrets.HOST }}
@@ -106,13 +121,9 @@ jobs:
         script: |
           echo "Starting deployment process..."
           
-          # Check if nginx is running
-          if systemctl is-active --quiet nginx; then
-            echo "Stopping nginx..."
-            systemctl stop nginx
-          else
-            echo "Nginx is not running, continuing..."
-          fi
+          # Stop nginx temporarily
+          echo "Stopping nginx..."
+          systemctl stop nginx || echo "Nginx was not running"
           
           # Remove old files
           echo "Removing old files..."
@@ -125,36 +136,20 @@ jobs:
           echo "Server preparation completed."
           
     - name: Upload files
-      run: |
-        echo "Uploading files using scp..."
+      if: success()
+      uses: appleboy/scp-action@v0.1.7
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.SSH_KEY }}
+        port: ${{ secrets.PORT }}
+        source: "dist/*"
+        target: "/tmp/vue-deploy/"
+        timeout: 300
+        command_timeout: 300
         
-        # Create a temporary SSH key file
-        echo "${{ secrets.SSH_KEY }}" > /tmp/deploy_key
-        chmod 600 /tmp/deploy_key
-        
-        # Try rsync first, fallback to scp if rsync is not available
-        if command -v rsync &> /dev/null; then
-          echo "Using rsync for file transfer..."
-          rsync -avz --progress \
-            -e "ssh -i /tmp/deploy_key -o StrictHostKeyChecking=no -o ConnectTimeout=30 -p ${{ secrets.PORT }}" \
-            dist/ \
-            ${{ secrets.USERNAME }}@${{ secrets.HOST }}:/tmp/vue-deploy/
-        else
-          echo "rsync not available, using scp..."
-          scp -i /tmp/deploy_key -o StrictHostKeyChecking=no -o ConnectTimeout=30 -P ${{ secrets.PORT }} -r dist/* ${{ secrets.USERNAME }}@${{ secrets.HOST }}:/tmp/vue-deploy/
-        fi
-        
-        if [ $? -eq 0 ]; then
-          echo "✅ File upload completed successfully"
-        else
-          echo "❌ File upload failed"
-          exit 1
-        fi
-        
-        # Clean up
-        rm -f /tmp/deploy_key
-      
     - name: Finalize deployment
+      if: success()
       uses: appleboy/ssh-action@v1.0.3
       with:
         host: ${{ secrets.HOST }}

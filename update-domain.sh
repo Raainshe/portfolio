@@ -13,8 +13,8 @@ DOMAIN=$1
 
 echo "Updating domain to: $DOMAIN"
 
-# Update the index.html file
-sed -i "s/YOUR-ACTUAL-DOMAIN\.com/$DOMAIN/g" public/index.html
+# Update the index.html file - replace the placeholder domain
+sed -i "s/your-new-domain\.com/$DOMAIN/g" public/index.html
 
 echo "Domain updated successfully!"
 echo "Make sure to rebuild your project after this change." 

@@ -44,4 +44,4 @@ This site is automatically deployed via GitHub Actions. Any push to the master b
 
 ---
 
-© 2024 Ryan Makoni
+© 2025 Ryan Makoni

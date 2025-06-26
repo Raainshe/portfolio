@@ -1,0 +1,75 @@
+name: Deploy to Digital Ocean
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: npm ci
+      
+    - name: Build project
+      run: npm run build
+      
+    - name: Deploy to server
+      uses: appleboy/ssh-action@v1.0.3
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.SSH_KEY }}
+        port: ${{ secrets.PORT }}
+        script: |
+          # Stop nginx temporarily
+          systemctl stop nginx
+          
+          # Remove old files
+          rm -rf /var/www/html/*
+          
+          # Create a temporary directory for the new files
+          mkdir -p /tmp/vue-deploy
+          
+    - name: Upload files
+      uses: appleboy/scp-action@v0.1.7
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.SSH_KEY }}
+        port: ${{ secrets.PORT }}
+        source: "dist/*"
+        target: "/tmp/vue-deploy/"
+        
+    - name: Finalize deployment
+      uses: appleboy/ssh-action@v1.0.3
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.SSH_KEY }}
+        port: ${{ secrets.PORT }}
+        script: |
+          # Move files to web directory
+          mv /tmp/vue-deploy/* /var/www/html/
+          
+          # Set proper permissions
+          chown -R www-data:www-data /var/www/html
+          chmod -R 755 /var/www/html
+          
+          # Start nginx
+          systemctl start nginx
+          
+          # Clean up
+          rm -rf /tmp/vue-deploy
+          
+          echo "Deployment completed successfully!" 

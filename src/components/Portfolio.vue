@@ -51,7 +51,7 @@
           </div>
         </v-tab>
 
-        <v-tab title="personal projects">
+        <v-tab title="personal projects/42 projects">
           <div class="row">
             <div
               v-for="(design, idx) in desgin_info"
@@ -371,6 +371,7 @@ export default {
   transition: all 0.5s;
   font-weight: 500;
   font-size: 13px;
+  padding: 2px 8px;
 }
 
 .bg-dark4 {

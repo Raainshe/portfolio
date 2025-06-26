@@ -290,98 +290,60 @@ let info = {
       description:
         "A full-featured e-commerce website for Digikraal developed with WordPress and WooCommerce. Features product management, user authentication, payment integration, and mobile-responsive design for seamless shopping experience."
     },
+    
   ],
   portfolio_design: [
     {
-      name: "Guituna",
-      title: "Guituna - Mockup Design",
+      name: "Emby-Torrent-Bot",
+      title: "qBittorrent Discord Bot",
       pictures: [
         {
-          img: require("./src/assets/designs/coursera1/MoodBoard.png"),
-          title: "MoodBoard"
+          img: require("./src/assets/emby torrentor meta ai.jpg")
         },
         {
-          img: require("./src/assets/designs/coursera1/Mockups 1.png"),
-          title: "Mockups 1"
-        },
-        {
-          img: require("./src/assets/designs/coursera1/Mockups 2.png"),
-          title: "Mockups 2"
-        },
-        {
-          img: require("./src/assets/designs/coursera1/App Elements.png"),
-          title: "App Elements"
+          img: require("./src/assets/emby.png")
         }
       ],
-      technologies: ["XD", "Illustrator"],
-      category: "Visual Design",
-      github: "",
-      date: "May, 2020 - Jun, 2020",
+      technologies: ["TypeScript", "Discord.js", "qBittorrent API", "Bun", "Node.js", "Chart.js"],
+      category: "Discord Bot",
+      github: "https://github.com/Raainshe/Emby-Torrent-Bot",
+      date: "2024",
       visit: "",
       description:
-        "Guituna is a simple, lightweight and intuitive guitar tuner, that provides different modes of guitars based on your usage. You can either select a specific string to tune, or free tune your guitar based on the frequency shown on the meter. Guituna also provides a handful of different tunings to help explore various tuning paradigms. There is also an array of settings that can be configured to your liking based on the devices you're using. <br/><br/>The interface aims to highlight the use of a minimal design and providing just enough controls to make for a great tuner, while exposing various possibilities of guitarists to explore."
+        "A comprehensive Discord bot that allows users to interact with qBittorrent through Discord slash commands. Features include listing torrents, adding magnet links with category-based save paths, displaying download progress, deleting torrents, showing disk space usage with pie charts, and automatic seeding time management.<br/><br/>The bot includes intelligent seeding management that automatically stops torrents after 10x their download duration, helping maintain good seeding ratios while preventing indefinite seeding. Built with TypeScript and Discord.js, it provides a user-friendly interface for managing torrent downloads remotely through Discord commands."
     },
     {
-      name: "Pantree",
-      title: "Pantree - Mockup Design",
+      name: "cub3d",
       pictures: [
         {
-          img: require("./src/assets/designs/pantree/MoodBoard.png"),
-          title: "Moodboard"
+          img: require("./src/assets/cub3d.png")
         },
         {
-          img: require("./src/assets/designs/pantree/1.png"),
-          title: "Mockups 1"
-        },
-        {
-          img: require("./src/assets/designs/pantree/2.png"),
-          title: "Mockups 2"
+          img: require("./src/assets/cub3d2.png")
         }
       ],
-      technologies: ["XD", "Illustrator"],
-      category: "Visual Design",
-      github: "",
-      date: "May, 2020 - July, 2020",
+      technologies: ["C", "Makefile", "Raycasting"],
+      category: "Graphics/Game Engine",
+      github: "https://github.com/Raainshe/cub3d",
+      date: "2025",
       visit: "",
       description:
-        "Pantree is a recipiece finding and recommending application. It is often the case that you have run to your closest grocery store just to pick up one item that is missing in your kitchen. Pantree keeps a track of all your ingredients, and suggests recipes based on your meal preferences and past recipes. <br/><br/> The goal of the interface is to keep it similar to various recipe/food apps to reduce the learning required by the user, but also provide a smooth interface for users to seemlessly browse through recipes and ingredients."
+        "A raycasting 3D engine written in C, inspired by classic games like Wolfenstein 3D. This project demonstrates low-level graphics programming, real-time rendering, and game engine fundamentals. Features include map parsing, player movement, wall rendering, and basic texture mapping. Built as part of the 42 curriculum, it showcases strong skills in C, algorithms, and graphics."
     },
     {
-      name: "Bunder",
-      title: "Bunder - MVP Proposal",
+      name: "minishell",
       pictures: [
         {
-          img: require("./src/assets/designs/bunder/Moodboard.png"),
-          title: "Moodboard"
-        },
-        {
-          img: require("./src/assets/designs/bunder/Mockup 1.png"),
-          title: "Mockup 1"
-        },
-        {
-          img: require("./src/assets/designs/bunder/Mockup 2.png"),
-          title: "Mockup 2"
-        },
-        {
-          img: require("./src/assets/designs/bunder/Mockup 3.png"),
-          title: "Mockup 3"
-        },
-        {
-          img: require("./src/assets/designs/bunder/Market Research 1.png"),
-          title: "Market Research 1"
-        },
-        {
-          img: require("./src/assets/designs/bunder/Market Research 2.png"),
-          title: "Market Research 2"
+          img: require("./src/assets/minishell.png")
         }
       ],
-      technologies: ["XD", "Illustrator"],
-      category: "Visual Design",
-      github: "",
-      date: "May, 2020 - July, 2020",
+      technologies: ["C", "Makefile", "Shell"],
+      category: "Shell/Systems Programming",
+      github: "https://github.com/Raainshe/minishell",
+      date: "2025",
       visit: "",
       description:
-        "Bunder is an intuitive web platform for micro-communities to share sensitive data with privacy within the community and allow engagement amongst them. Our aim is two-fold - Co-existing and Collaboration. The former is executed by providing a platform for communities that are geographically positioned in the same proximity (Housing societies, Dorms, Apartment Complexes) to have and share data (exact apartment addresses, phone number, apartment housing rules, individuals tested positive for COVID-19) in an exclusive platform. The latter is to give these people in the community the ability to carry out a task you are physically or remotely unable to do; with dignity and ease."
+        "A bash-like shell implementation for 42 School featuring command execution, pipes, redirections, environment variable expansion, signal handling, and built-in commands. Includes a custom tokenizer, a context-based garbage collector for memory management, and comprehensive tests for both functionality and memory leaks."
     }
   ],
   recommendations: [

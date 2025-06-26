@@ -49,9 +49,6 @@
               />
             </div>
           </div>
-          <div class="text-center py-3" v-if="showBtn !== 'show less'">
-            <button class="btn" @click.prevent="showMore">{{ showBtn }}</button>
-          </div>
         </v-tab>
 
         <v-tab title="design">
@@ -163,14 +160,11 @@ export default {
     return {
       all_info: info.portfolio,
       desgin_info: info.portfolio_design,
-      portfolio_info: [],
+      portfolio_info: info.portfolio,
       showModal: false,
       showDesignModal: false,
       modal_info: {},
       design_modal_info: {},
-      number: 3,
-      showBtn: "show more",
-      shower: 0,
       data: [
         '<div class="example-slide">Slide 1</div>',
         '<div class="example-slide">Slide 2</div>',
@@ -179,17 +173,10 @@ export default {
     };
   },
   created() {
-    for (var i = 0; i < this.number; i++) {
-      this.portfolio_info.push(this.all_info[i]);
-    }
+    // Remove the pagination logic - show all projects
   },
   watch: {
-    number() {
-      this.portfolio_info = [];
-      for (var i = 0; i < this.number; i++) {
-        this.portfolio_info.push(this.all_info[i]);
-      }
-    },
+    // Remove the number watcher since we're not using pagination
   },
   methods: {
     next() {
@@ -211,30 +198,6 @@ export default {
     showDesignModalFn(design_portfolio) {
       this.design_modal_info = design_portfolio;
       this.showDesignModal = true;
-    },
-    showMore() {
-      if (this.number != this.all_info.length) {
-        this.number += 3;
-
-        window.scrollBy({
-          top: document.getElementsByClassName("smcard")[0].clientHeight,
-          behavior: "smooth",
-        });
-
-        if (this.number > this.all_info.length)
-          this.number = this.all_info.length;
-      }
-
-      if (this.number == this.all_info.length && this.shower == 0) {
-        this.shower = 1;
-        this.showBtn = "show less";
-      } else if (this.number == this.all_info.length && this.shower == 1) {
-        var elementPosition = document.getElementById("portfolio").offsetTop;
-        window.scrollTo({ top: elementPosition + 5, behavior: "smooth" });
-        this.shower = 0;
-        this.number = 3;
-        this.showBtn = "show more";
-      }
     },
   },
 };

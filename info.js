@@ -1,7 +1,7 @@
 let info = {
-  name: "Hrishikesh Paul",
-  logo_name: "paul",
-  flat_picture: require("./src/assets/potrait.jpg"),
+  name: "Ryan Makoni",
+  logo_name: "makoni",
+  flat_picture: require("./src/assets/ryan.jpg"),
   config: {
     use_cookies: true,
     navbar: {
@@ -9,331 +9,287 @@ let info = {
     }
   },
   description:
-    "A second year Computer Science graduate student at Indiana University Bloomington with an interest in Software Development, UX Design and Artificial Intelligence - and seeking exciting opportunities related to the same.<br><br>I am a detail oriented person and I keep my goals and tasks organized to maintain productivity. I would bring to table a wide range of software skills, ranging from design and development to writing scripts for intelligent agents. I believe that the skills that I have attained from the dynamic environment and competitive university life define me, and I am looking forward to implementing and polishing them in any opportunity that I receive. ",
+    "Hey there! I'm Ryan, a passionate Full Stack Developer who loves turning ideas into reality through code. I'm currently pursuing Software Engineering at 42 Heilbronn in Germany, where I'm diving deep into project-based learning and peer-to-peer collaboration.<br><br>With over 5 years of experience under my belt, I've had the privilege of wearing many hats in the tech world. I founded and run Key Space, a technology company focused on web development services, where I lead projects from concept to deployment. I've also worked as a Web Developer at Tiny Optics, where I handle full-stack development and API integrations, and as an IT Facilitator at CTU Training Solutions, where I get to share my knowledge and mentor aspiring developers.<br><br>I'm passionate about modern web technologies like React, Vue.js, ASP.NET, and cloud platforms like Microsoft Azure. What drives me is staying current with emerging technologies and delivering innovative solutions that make a real impact. I believe in continuous learning and pushing the boundaries of what's possible in web development.",
   links: {
-    linkedin: "https://www.linkedin.com/in/hrishikeshpaul/",
-    github: "https://github.com/hrishikeshpaul",
-    angellist: "https://angel.co/u/hrishikesh-paul",
-    resume:
-      "https://github.com/hrishikeshpaul/portfolio-template/blob/master/src/assets/pdfs/Resume.pdf"
+    linkedin: "https://www.linkedin.com/in/ryan-makoni/",
+    github: "https://github.com/Raainshe",
+    angellist: "https://angel.co/u/ryan-makoni",
+    resume: "RyanMakoniResume.pdf"
   },
   education: [
     {
-      name: "Indiana University Bloomington",
-      place: "USA",
-      date: "Aug, 2019 - May, 2021",
-      degree: "Masters in Computer Science",
-      gpa: "3.7/4.0",
+      name: "42 Heilbronn",
+      place: "Heilbronn, Germany",
+      date: "Oct, 2024 - Present",
+      degree: "Software Engineering",
+      gpa: "Project-based learning",
       description:
-        "Currently pursuing my Master's in Computer Science, while specializing in the field of Artificial Intelligence and Machine Learning.",
+        "Project-based learning school, based on peer-to-peer learning. The 42 program takes a project-based approach to progress and is designed to develop technical and people skills that match the expectations of the labour market.",
       skills: [
-        "Artificial Intelligence",
         "Software Engineering",
-        "Algorithms",
-        "Computer Vision",
-        "Music Data Mining",
-        ,
-        "OS"
+        "Project-based Learning",
+        "Peer-to-Peer Learning",
+        "Technical Skills",
+        "Problem Solving"
       ]
     },
     {
-      name: "Manipal Institute of Technology",
-      place: "India",
-      date: "Aug, 2015 - July, 2019",
-      degree: "Bachelors in Computer and Communication",
-      gpa: "8.0/10.0",
+      name: "Richfield Graduate Institute of Technology",
+      place: "South Africa",
+      date: "2017 - 2020",
+      degree: "Bachelor of Science - Information Technology",
+      gpa: "Specialisation: Systems Development",
       description:
-        "Graduated from Manipal Institute of Technology, Manipal with a bachelors degree in Computer and Communications Engineering.",
+        "Graduated with a Bachelor of Science in Information Technology, specializing in Systems Development. This program provided a strong foundation in software development, database management, and IT systems.",
       skills: [
-        "AI",
-        "Neural Netwroks",
-        "Data Mining",
-        "Computer Vision",
-        "Pattern Recognition",
-        "HCI",
-        "Software Engineering"
+        "Information Technology",
+        "Systems Development",
+        "Software Development",
+        "Database Management",
+        "IT Systems"
       ]
     }
   ],
   experience: [
     {
-      name: "Cyberinfrastructure for Network Science Center",
-      place: "Bloomington, Indiana",
-      date: "Jun, 2020 - Present",
-      position: "Research Assistant; Full Stack Developer",
+      name: "Key Space",
+      place: "Randburg, South Africa",
+      date: "2023 - Oct, 2024",
+      position: "Director",
       description:
-        "Worked as a Software Developer for the Human BioMolecular Atlas Program (funded by the NIH), building innovative visualization tools to envision large biomedical datasets.",
-      skills: ["Angular", "Node.js", "Vega", "Shell", "Typescript"]
+        "Founded and manage a technology company focusing on web development services. Lead development projects for multiple clients, from concept to deployment. Oversee project timelines, client communications, and technical implementation.",
+      skills: ["Project Management", "Web Development", "Client Relations", "Business Strategy"]
     },
     {
-      name: "Skylark Drones",
-      place: "Bangalore, India",
-      date: "Jan, 2019 - Jun, 2021",
-      position: "Full Stack Web Developer",
+      name: "Tiny Optics",
+      place: "Cape Town, South Africa",
+      date: "2020 - Present",
+      position: "Web Developer",
       description:
-        "Worked as a full stack web developer, implementing various features and fixing bugs for Skylark Drones’ central management system called Operations Portal and Data Mining Server.",
-      skills: ["MongoDB", "Flask", "VueJS", "NGINX"]
+        "Performed full-stack development duties for client websites. Implemented and integrated various APIs. Conducted testing, bug fixes, and regular content updates.",
+      skills: ["Full Stack Development", "API Integration", "Testing", "Bug Fixes"]
     },
     {
-      name: "Hridayam Soft Solutions",
-      place: "Mumbai, India",
-      date: "May, 2018 - Jun, 2018",
-      position: "Computer Vision Engineer",
+      name: "CTU Training Solutions",
+      place: "Randburg, South Africa",
+      date: "2022 - 2024",
+      position: "IT Facilitator",
       description:
-        "Scripted an algorithm for extracting information (such as date, invoice number etc.) from scanned images of invoices, built a web interface for using the former mentioned machine.",
-      skills: ["Python", "OpenCV", "PyTesseract", "AngularJS", "NodeJS"]
+        "Taught UI design, including HTML, JavaScript, Java, and Adobe Suite. Developed curriculum materials and student assessments. Provided mentoring and technical guidance to aspiring developers.",
+      skills: ["Teaching", "Curriculum Development", "HTML", "JavaScript", "Java", "Adobe Suite"]
     },
     {
-      name: "Elementail Labs",
-      place: "Mumbai, India",
-      date: "May, 2017 - July, 2017",
-      position: "Full Stack Web Developer",
+      name: "Value Logistics",
+      place: "Germiston, South Africa",
+      date: "2022",
+      position: "Junior Developer",
       description:
-        "Implemented various contracts and deployed them on the upcoming blockchain technology - Ethereum, while also working as a MEAN stack web developer for Elemential Labs’ website.",
-      skills: ["MongoDB", "AngularJS", "NodeJS", "ExpressJS"]
+        "Improved user engagement by 25% by developing high-performance web applications with ASP.NET and MVC. Created custom SQL procedures and reports for business intelligence. Implemented database solutions for enterprise applications.",
+      skills: ["ASP.NET", "MVC", "SQL", "Business Intelligence", "Database Solutions"]
     },
     {
-      name: "Viteos Capital Market Services s",
-      place: "Mumbai, India",
-      date: "May, 2016 - July, 2016",
-      position: "Software Developer",
+      name: "Value Logistics",
+      place: "Germiston, South Africa",
+      date: "2021 - 2022",
+      position: "Web Development Intern",
       description:
-        "Evaluated technologies, and building proof of concept/prototype solutions for trade processing and mathematical model based evaluations, while working in the software development team.",
-      skills: ["C#", "C++", "Visual Studio"]
+        "Generated client reports using SQL and SSRS. Developed custom web applications for internal business needs. Maintained and hosted web applications for various departments.",
+      skills: ["SQL", "SSRS", "Web Applications", "Application Hosting"]
+    },
+    {
+      name: "Freelance Web Developer",
+      place: "Randburg, South Africa",
+      date: "2019 - 2022",
+      position: "Freelance Web Developer",
+      description:
+        "Designed and developed websites ranging from basic informational sites to complex e-commerce platforms. Created custom environments for clients' internal use. Provided ongoing maintenance and hosting services.",
+      skills: ["E-commerce", "Website Design", "Custom Development", "Maintenance", "Hosting"]
+    },
+    {
+      name: "Master Your Finances",
+      place: "Randburg, South Africa",
+      date: "2019 - 2021",
+      position: "Web Developer & IT Technician",
+      description:
+        "Developed and maintained the company website. Provided technical support for livestreams and virtual meetings. Created digital marketing materials and edited promotional content.",
+      skills: ["Website Maintenance", "Technical Support", "Digital Marketing", "Content Creation"]
     }
   ],
   skills: [
     {
-      title: "languages",
+      title: "programming languages",
       info: [
-        "Python",
-        "Javascript",
+        "JavaScript",
         "TypeScript",
-        "Java",
+        "C#",
         "C",
         "C++",
-        "SQL",
-        "NoSQL",
-        "Ruby"
+        "Java",
+        "Kotlin",
+        "HTML",
+        "CSS",
+        "Python"
       ],
       icon: "fa fa-code"
     },
     {
-      title: "data frameworks",
-      info: [
-        "Keras",
-        "Numpy",
-        "Pandas",
-        "OpenCV",
-        "SciPy",
-        "Sklearn",
-        "LibROSA",
-        "Pillow"
-      ],
-      icon: "fa fa-cubes"
-    },
-    {
       title: "web technologies",
-      info: ["Vue", "Angular", "React", "Node", "Flask", "HTML", "CSS"],
+      info: [
+        "React",
+        "Vue.js",
+        "ASP.NET",
+        "MVC",
+        "WordPress",
+        "E-commerce",
+        "Node.js",
+        "Express.js",
+        "Next.js",
+        "Bootstrap",
+        "Material UI",
+      ],
       icon: "fas fa-laptop-code"
     },
     {
-      title: "databases",
-      info: ["MongoDB", "MySQL", "OracleSQL", "Neo4j"],
+      title: "databases & reporting",
+      info: [
+        "SQL",
+        "MongoDB",
+        "SSRS"
+      ],
       icon: "fa fa-database"
     },
     {
-      title: "operating systems & tools",
+      title: "cloud & tools",
       info: [
-        "MacOS",
-        "Ubuntu",
-        "Windows",
-        "Android",
-        "Agile",
-        "Scrum",
-        "JIRA",
-        "Heroku",
-        "Firebase",
-        "AWS S3"
+        "Microsoft Azure",
+        "GitHub",
+        "P2P"
       ],
       icon: "fas fa-tools"
     },
     {
-      title: "design",
-      info: ["Illustrator", "XD", "Photoshop", "Final Cut Pro"],
+      title: "design & creative",
+      info: [
+        "Adobe CC",
+        "UI Design",
+        "Figma",
+        "Premiere Pro",
+      ],
       icon: "fa fa-pencil-square-o"
+    },
+    {
+      title: "certifications",
+      info: [
+        "Microsoft Certified: Azure Fundamentals",
+        "Microsoft Certified: DevOps Engineer Expert",
+        "Microsoft Certified: Developer Associate"
+      ],
+      icon: "fa fa-certificate"
     }
   ],
   portfolio: [
     {
-      name: "Sheet Recognizer",
+      name: "SBJ Application Form",
       pictures: [
         {
-          img: require("./src/assets/portfolio/msr/one.png")
-        },
-        {
-          img: require("./src/assets/portfolio/msr/two.png")
-        },
-        {
-          img: require("./src/assets/portfolio/msr/three.png")
-        },
-        {
-          img: require("./src/assets/portfolio/msr/four.png")
+          img: require("./src/assets/ryan.jpg")
         }
       ],
-      technologies: ["Computer Vision", "OpenCV", "AI", "Flask", "Sockets"],
-      category: "Algorithm",
-      date: "Jan, 2020 - Mar, 2020",
-      github:
-        "https://github.com/hrishikeshpaul/music-sheet-recognizer-backend",
-      visit: "https://github.com/hrishikeshpaul/music-sheet-recognizer-backend",
+      technologies: ["Node.js", "Express.js", "Vue.js 3", "MongoDB", "Mongoose", "Passport.js", "SendGrid", "Google Drive API", "Trello API", "Bootstrap 5", "Pinia", "Axios", "Multer", "Heroku"],
+      category: "Full Stack Application",
+      date: "2023",
+      github: "https://github.com/Tiny-Optics/SBJ-application-form",
+      visit: "",
       description:
-        "Music Sheet Recognizer (MSR) highlights basic Image Processing and Recognition. Like Optical Character Recognition, this tool is used to detect music notes and rests. It makes use of basic Computer Vision techniques such as Convolution, Edge Detections, Hough Transforms and Template Matching to detect notes and rests on a music sheet. "
+        "A comprehensive loan application form system with integration to Run A Loan API. Features include user authentication, file uploads, digital signatures, automated data synchronization, Google Drive integration for document storage, and Trello integration for workflow management. Built with Vue.js frontend and Node.js backend, featuring real-time form validation, email notifications via SendGrid, and scheduled API updates."
     },
     {
-      name: "NoQ Job Portal",
+      name: "BTECSolution",
       pictures: [
         {
-          img: require("./src/assets/portfolio/noq/logo.png")
+          img: require("./src/assets/btecsolutions.png")
         },
         {
-          img: require("./src/assets/portfolio/noq/one.png")
-        },
-        {
-          img: require("./src/assets/portfolio/noq/two.png")
-        },
-        {
-          img: require("./src/assets/portfolio/noq/three.png")
-        },
-        {
-          img: require("./src/assets/portfolio/noq/four.png")
+          img: require("./src/assets/btecsolutions2.png")
         }
       ],
-      technologies: ["Node", "Vue", "Express", "MongoDB", "Heroku"],
-      category: "Website",
-      date: "Sep, 2019 - Dec  , 2019",
-      github: "https://github.com/hrishikeshpaul/noq",
-      visit: "https://noq-client.herokuapp.com/",
+      technologies: ["HTML", "CSS", "JavaScript", "ASP.NET", "C#"],
+      category: "Web Application",
+      date: "2023",
+      github: "https://github.com/Raainshe/BTECSolution",
+      visit: "https://btecsolutions.co.za/",
       description:
-        "No Q, is a revolutionary tool which allows for both employers and students to skip the hassle seen in modern day career fairs. For the students, there is an intuitive profile builder where you can add things like education, skills, certifications, honors, and experiences. No Q is not only good for students, but employers as well! A common problem at modern career fairs is the number of unqualified candidates who waste their time when they could be chatting with someone else. With No Q, only the students who meet the positions’ criteria will be able to apply, and from there the recruiter can invite them to talk in more detail at the career fair through our intuitive messaging system."
+        "A web application built with ASP.NET and C# backend, featuring JavaScript and CSS frontend. The project demonstrates full-stack development capabilities with modern web technologies, providing a comprehensive solution for BTEC-related functionality."
     },
     {
-      name: "POST",
+      name: "Tuso Wellness (Landing Page)",
       pictures: [
         {
-          img: require("./src/assets/portfolio/post/one.png")
+          img: require("./src/assets/Tuso.png")
         },
         {
-          img: require("./src/assets/portfolio/post/two.png")
+          img: require("./src/assets/tuso2.png")
         }
       ],
-      technologies: [
-        "Markov Models",
-        "Python",
-        "Artificial Intelligence",
-        "Vue",
-        "Heroku"
-      ],
-      category: "Algorithm",
-      github: "https://github.com/hrishikeshpaul/pos-tagger",
-      date: "Oct, 2019 - Nov, 2019",
-      visit: "https://post-client.herokuapp.com/",
+      technologies: ["HTML", "CSS", "JavaScript", "Responsive Design", "ASP.NET"],
+      category: "Landing Page",
+      date: "2023",
+      github: "https://github.com/Raainshe/TusoWellness",
+      visit: "https://www.tusowellness.com/",
       description:
-        "Post is a simple algorithm that was developed to tagging a word corresponding to its part of speech. The algorithm makes of a probabilisitic approach along with some randomness, together which forms the basis of an algorithm called Gibbs Sampling."
+        "A modern, responsive landing page for Tuso Wellness. Designed and developed with clean, user-friendly interface focusing on wellness services. Features responsive design, smooth animations, and optimized for all devices."
     },
     {
-      name: "Suicide Analyzer",
+      name: "Master Your Finances",
       pictures: [
         {
-          img: require("./src/assets/portfolio/suicide/suicide-analyzer.png")
+          img: require("./src/assets/masteryourfinances.png")
         },
         {
-          img: require("./src/assets/portfolio/suicide/suicide2-original.png")
+          img: require("./src/assets/masteryourfinances2.png")
         }
       ],
-      technologies: ["Node", "Angular", "Express", "Leaflet", "Pandas"],
-      category: "Website",
-      date: "Oct, 2018 - Nov, 2018",
-      github: "https://github.com/hrishikeshpaul/whodata",
-      visit: "https://skylarktiral.herokuapp.com/",
+      technologies: ["HTML", "CSS", "JavaScript", "ASP.NET"],
+      category: "Landing Page",
+      date: "2019 - 2021",
+      github: "",
+      visit: "http://www.masteryourfinances.net/",
       description:
-        "This is a web application, uses a map to demonstrate the number suicides committed around the globe, according to a dataset provided by the WHO. The application consists of a Leaflet map that colors every nation, based on the number of suicides that have been committed in that country, for that year. It provides us with the capability to select the data as well as the continent."
+        "Developed and maintained the company website for Master Your Finances. Created digital marketing materials and provided ongoing technical support. The website serves as a platform for financial education and services."
     },
     {
-      name: "Sentiment Analyzer",
+      name: "Addaxz (E-commerce)",
       pictures: [
         {
-          img: require("./src/assets/portfolio/smit/one.png")
-        },
-        {
-          img: require("./src/assets/portfolio/smit/two.png")
-        },
-        {
-          img: require("./src/assets/portfolio/smit/three.png")
-        },
-        {
-          img: require("./src/assets/portfolio/smit/four.png")
+          img: require("./src/assets/Addaxz.png")
         }
       ],
-      technologies: ["LSTM", "Keras", "Angular", "Tweepy", "Heroku", "Python"],
-      category: "Alogrithm",
-      date: "Feb, 2018 - Apr  , 2018",
-      github: "https://github.com/hrishikeshpaul/sih",
-      visit: "https://angel.co/projects/1009777-sentiment-analysis",
+      technologies: ["HTML", "CSS", "JavaScript", "ASP.NET"],
+      category: "E-commerce",
+      date: "2022",
+      github: "",
+      visit: "http://www.addaxz.co.za/",
       description:
-        "Developing this for the final round of Smart India Hackathon 2018, the web application is a platform for showcasing the sentiment of the tweets of the people in the Telangana region in India on policy satisfaction, services and problem definitions. The minimal UI design consists of different bins, that have their respective tweets, all scraped from twitter. There is also a simple graphical representation denoting the sentiment of the tweets."
+        "A comprehensive e-commerce platform for Addaxz. Built with WordPress and WooCommerce, featuring product catalog, shopping cart functionality, secure payment processing, and responsive design for optimal user experience."
     },
     {
-      name: "Clumpr",
+      name: "Digikraal (E-commerce)",
       pictures: [
         {
-          img: require("./src/assets/portfolio/clumpr/logo.png")
+          img: require("./src/assets/digikraal.png")
         },
         {
-          img: require("./src/assets/portfolio/clumpr/one.png")
-        },
-        {
-          img: require("./src/assets/portfolio/clumpr/two.png")
+          img: require("./src/assets/digikraal2.png")
         }
       ],
-      technologies: ["Node", "Angular", "Express", "MySQL", "Facebook API"],
-      category: "Web App",
-      github: "https://github.com/hrishikeshpaul/clumpr",
-      date: "Sep, 2017 - Nov, 2017",
-      visit: "https://github.com/hrishikeshpaul/clumpr",
+      technologies: ["WordPress", "WooCommerce", "E-commerce", "HTML", "CSS", "JavaScript"],
+      category: "E-commerce",
+      date: "2022",
+      github: "",
+      visit: "http://www.digikraal.co.za",
       description:
-        'Clumpr is an online social event planning assistant that - using information about similar events happening in similar locations around the same time, friends who frequently attend the same events, and mutual friends - helps users to collaborate, combine, and attend events together, effectively "clumping" people and activities in a way that makes intuitive sense.'
+        "A full-featured e-commerce website for Digikraal developed with WordPress and WooCommerce. Features product management, user authentication, payment integration, and mobile-responsive design for seamless shopping experience."
     },
-    {
-      name: "Nutricare",
-      pictures: [
-        {
-          img: require("./src/assets/portfolio/nc/one.png")
-        },
-        {
-          img: require("./src/assets/portfolio/nc/two.png")
-        },
-        {
-          img: require("./src/assets/portfolio/nc/three.png")
-        },
-        {
-          img: require("./src/assets/portfolio/nc/four.png")
-        },
-        {
-          img: require("./src/assets/portfolio/nc/five.png")
-        },
-        {
-          img: require("./src/assets/portfolio/nc/six.png")
-        }
-      ],
-      technologies: ["Node", "Angular", "Express", "MongDB", "Medical"],
-      category: "Website",
-      github: "https://github.com/hrishikeshpaul/clumpr",
-      date: "May, 2017 - Aug, 2017",
-      visit: "https://angel.co/projects/576300-nutricare",
-      description:
-        "Nutricare is a basic health website for users(patients) to input nutrient intake data and researchers to analyse the data with the help of graphs and tables. A researcher can conduct studies on N different subjects (patient) for a particular problem statement. Typically, a researcher will enter food item consumed by subjects over a period of time (Ex - 24hrs, or 1 week, or 1 month etc)."
-    }
   ],
   portfolio_design: [
     {

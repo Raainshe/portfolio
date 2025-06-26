@@ -97,7 +97,12 @@ export default {
           window.open(this.angellist, "_blank");
           break;
         case "resume":
-          window.open(this.resume, "_blank");
+          const link = document.createElement('a');
+          link.href = this.resume;
+          link.download = 'RyanMakoniResume.pdf';
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
           break;
       }
     },

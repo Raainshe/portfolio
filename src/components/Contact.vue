@@ -148,14 +148,14 @@ export default {
     sendEmail() {
       if (!this.email || !this.name || !this.text) {
         this.showSnackbar = true;
-        this.snackbarMessage = "Please all the fields";
+        this.snackbarMessage = "Please fill in all the fields";
         this.snackbarColor = "rgb(212, 149, 97)";
       } else {
         var obj = {
           user_email: this.email,
           from_name: this.name,
           message_html: this.text,
-          to_name: "Hrishikesh Paul",
+          to_name: "Ryan Makoni",
         };
 
         emailjs
@@ -168,7 +168,7 @@ export default {
           .then(
             (result) => {
               this.showSnackbar = true;
-              this.snackbarMessage = "Thanks! Message recieved.";
+              this.snackbarMessage = "Thanks! Message received.";
               this.snackbarColor = "#1aa260";
 
               this.email = "";

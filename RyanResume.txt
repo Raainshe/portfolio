@@ -1,0 +1,76 @@
+
+1
+RYAN MAKONIFull Stack Developer
+4915215132910 ryanbwgt@gmail.com https://www.linkedin.com/in/ryan-makoni/ Heilbronn, Germany
+EXPERIENCE
+Director
+Key Space
+2023  10/2024  Randburg, South Africa
+Founded and manage a technology company focusing on web development servicesLead development projects for multiple clients, from concept to deploymentOversee project timelines, client communications, and technical implementation
+Web Developer
+Tiny Optics
+2020  Present  Cape Town, South Africa
+Performed full-stack development duties for client websitesImplemented and integrated various APIsConducted testing, bug fixes, and regular content updates
+IT Facilitator
+CTU Training Solutions
+2022  2024  Randburg, South Africa
+Taught UI design, including HTML, JavaScript, Java, and Adobe SuiteDeveloped curriculum materials and student assessmentsProvided mentoring and technical guidance to aspiring developers
+Junior Developer
+Value Logistics
+2022  Germiston, South Africa
+Improved user engagement by 25% by developing high-performance web applications with ASP.NET and MVCCreated custom SQL procedures and reports for business intelligenceImplemented database solutions for enterprise applications
+Web Development Intern
+Value Logistics
+2021  2022  Germiston, South Africa
+Generated client reports using SQL and SSRSDeveloped custom web applications for internal business needsMaintained and hosted web applications for various departments
+Freelance Web Developer
+Free-lancing)
+2019  2022  Randburg, South Africa
+Designed and developed websites ranging from basic informational sites to complex e-commerce platformsCreated custom environments for clients' internal useProvided ongoing maintenance and hosting services
+Web Developer & IT Technician
+Master Your Finances
+2019  2021  Randburg, South Africa
+Developed and maintained the company websiteProvided technical support for livestreams and virtual meetingsCreated digital marketing materials and edited promotional content
+EDUCATION
+Software Engineering
+42heilbronn.de
+10/2024  Present  42 Heilbronn
+Project based learning school, based on peer to peer learningThe 42 program takes a project-based approach to progress and is designed to developTechnical and people skills that match the expectations of the labour market
+Bachelor of Science - Information Technology
+Richfield Graduate Institute of Technology
+2017  2020  South Africa
+Specialisation: Systems Development
+CERTIFICATION
+Developer Associate
+Microsoft
+Microsoft Certified: Azure FundamentalsEngineer Associate
+Microsoft
+TRAINING / COURSES
+Microsoft Certified: DevOps Engineer ExpertDeveloper Associate
+Microsoft
+Engineer Associate
+Microsoft
+Microsoft Certified: Azure Fundamentals
+LANGUAGES
+English
+Native
+German
+Beginner
+SKILLS
+Adobe CC ASP.NET C# CSS KotlinC C Typescript MongoDBECommerce GitHub HTML JavaJavaScript MVC P2P React SQLSSRS Vue.js WordPress
+FIND ME ONLINE
+LinkedIn
+https://www.linkedin.com/in/ryan-makoni/
+GitHub
+https://github.com/Raainshe
+GitHub
+https://github.com/Tiny-Optics
+PROJECTS
+Landing Page
+http://www.masteryourfinances.net/
+Landing Page
+https://www.tusowellness.com/
+ECommerce
+http://www.addaxz.co.za/
+ECommerce
+http://www.digikraal.co.za

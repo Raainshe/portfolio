@@ -1,5 +1,7 @@
 # Ryan Makoni - Portfolio Website
 
+🌐 **Live Website**: [http://ryanmakoni.live](http://ryanmakoni.live)
+
 > A personal portfolio website showcasing my skills, projects, and professional experience. Built with Vue.js and deployed on Digital Ocean.
 
 ## About This Site

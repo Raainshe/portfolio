@@ -24,6 +24,39 @@ jobs:
     - name: Build project
       run: npm run build
       
+    - name: Debug - Check secrets availability
+      run: |
+        echo "Checking if required secrets are available..."
+        if [ -z "${{ secrets.HOST }}" ]; then
+          echo "❌ HOST secret is missing"
+          exit 1
+        else
+          echo "✅ HOST secret is available"
+        fi
+        
+        if [ -z "${{ secrets.USERNAME }}" ]; then
+          echo "❌ USERNAME secret is missing"
+          exit 1
+        else
+          echo "✅ USERNAME secret is available"
+        fi
+        
+        if [ -z "${{ secrets.SSH_KEY }}" ]; then
+          echo "❌ SSH_KEY secret is missing"
+          exit 1
+        else
+          echo "✅ SSH_KEY secret is available"
+        fi
+        
+        if [ -z "${{ secrets.PORT }}" ]; then
+          echo "❌ PORT secret is missing"
+          exit 1
+        else
+          echo "✅ PORT secret is available"
+        fi
+        
+        echo "All secrets are available. Proceeding with deployment..."
+      
     - name: Deploy to server
       uses: appleboy/ssh-action@v1.0.3
       with:
@@ -32,14 +65,25 @@ jobs:
         key: ${{ secrets.SSH_KEY }}
         port: ${{ secrets.PORT }}
         script: |
-          # Stop nginx temporarily
-          systemctl stop nginx
+          echo "Starting deployment process..."
+          
+          # Check if nginx is running
+          if systemctl is-active --quiet nginx; then
+            echo "Stopping nginx..."
+            systemctl stop nginx
+          else
+            echo "Nginx is not running, continuing..."
+          fi
           
           # Remove old files
+          echo "Removing old files..."
           rm -rf /var/www/html/*
           
           # Create a temporary directory for the new files
+          echo "Creating temporary directory..."
           mkdir -p /tmp/vue-deploy
+          
+          echo "Server preparation completed."
           
     - name: Upload files
       uses: appleboy/scp-action@v0.1.7
@@ -59,17 +103,38 @@ jobs:
         key: ${{ secrets.SSH_KEY }}
         port: ${{ secrets.PORT }}
         script: |
+          echo "Finalizing deployment..."
+          
+          # Check if files were uploaded
+          if [ ! "$(ls -A /tmp/vue-deploy)" ]; then
+            echo "❌ No files found in /tmp/vue-deploy. Upload may have failed."
+            exit 1
+          fi
+          
           # Move files to web directory
+          echo "Moving files to web directory..."
           mv /tmp/vue-deploy/* /var/www/html/
           
           # Set proper permissions
+          echo "Setting permissions..."
           chown -R www-data:www-data /var/www/html
           chmod -R 755 /var/www/html
           
           # Start nginx
+          echo "Starting nginx..."
           systemctl start nginx
           
+          # Check if nginx started successfully
+          if systemctl is-active --quiet nginx; then
+            echo "✅ Nginx started successfully"
+          else
+            echo "❌ Failed to start nginx"
+            systemctl status nginx
+            exit 1
+          fi
+          
           # Clean up
+          echo "Cleaning up temporary files..."
           rm -rf /tmp/vue-deploy
           
-          echo "Deployment completed successfully!" 
+          echo "🎉 Deployment completed successfully!" 

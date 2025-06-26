@@ -80,6 +80,19 @@ jobs:
           exit 1
         fi
         
+        # Test SCP specifically
+        echo "Testing SCP connectivity..."
+        timeout 30 scp -i /tmp/deploy_key -o StrictHostKeyChecking=no -o ConnectTimeout=10 -P ${{ secrets.PORT }} -r /tmp/deploy_key ${{ secrets.USERNAME }}@${{ secrets.HOST }}:/tmp/test_scp
+        
+        if [ $? -eq 0 ]; then
+          echo "✅ SCP connection test passed"
+          # Clean up test file
+          ssh -i /tmp/deploy_key -o StrictHostKeyChecking=no -o ConnectTimeout=10 -p ${{ secrets.PORT }} ${{ secrets.USERNAME }}@${{ secrets.HOST }} "rm -f /tmp/test_scp"
+        else
+          echo "❌ SCP connection test failed"
+          echo "SCP might be blocked or not working properly"
+        fi
+        
         # Clean up
         rm -f /tmp/deploy_key
       
@@ -112,16 +125,35 @@ jobs:
           echo "Server preparation completed."
           
     - name: Upload files
-      uses: appleboy/scp-action@v0.1.7
-      with:
-        host: ${{ secrets.HOST }}
-        username: ${{ secrets.USERNAME }}
-        key: ${{ secrets.SSH_KEY }}
-        port: ${{ secrets.PORT }}
-        source: "dist/*"
-        target: "/tmp/vue-deploy/"
-        debug: true
+      run: |
+        echo "Uploading files using scp..."
         
+        # Create a temporary SSH key file
+        echo "${{ secrets.SSH_KEY }}" > /tmp/deploy_key
+        chmod 600 /tmp/deploy_key
+        
+        # Try rsync first, fallback to scp if rsync is not available
+        if command -v rsync &> /dev/null; then
+          echo "Using rsync for file transfer..."
+          rsync -avz --progress \
+            -e "ssh -i /tmp/deploy_key -o StrictHostKeyChecking=no -o ConnectTimeout=30 -p ${{ secrets.PORT }}" \
+            dist/ \
+            ${{ secrets.USERNAME }}@${{ secrets.HOST }}:/tmp/vue-deploy/
+        else
+          echo "rsync not available, using scp..."
+          scp -i /tmp/deploy_key -o StrictHostKeyChecking=no -o ConnectTimeout=30 -P ${{ secrets.PORT }} -r dist/* ${{ secrets.USERNAME }}@${{ secrets.HOST }}:/tmp/vue-deploy/
+        fi
+        
+        if [ $? -eq 0 ]; then
+          echo "✅ File upload completed successfully"
+        else
+          echo "❌ File upload failed"
+          exit 1
+        fi
+        
+        # Clean up
+        rm -f /tmp/deploy_key
+      
     - name: Finalize deployment
       uses: appleboy/ssh-action@v1.0.3
       with:
@@ -135,8 +167,13 @@ jobs:
           # Check if files were uploaded
           if [ ! "$(ls -A /tmp/vue-deploy)" ]; then
             echo "❌ No files found in /tmp/vue-deploy. Upload may have failed."
+            echo "Contents of /tmp/vue-deploy:"
+            ls -la /tmp/vue-deploy || echo "Directory does not exist"
             exit 1
           fi
+          
+          echo "Files found in /tmp/vue-deploy:"
+          ls -la /tmp/vue-deploy
           
           # Move files to web directory
           echo "Moving files to web directory..."

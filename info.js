@@ -76,7 +76,7 @@ let info = {
       position: "IT Facilitator",
       description:
         "Taught UI design, including HTML, JavaScript, Java, and Adobe Suite. Developed curriculum materials and student assessments. Provided mentoring and technical guidance to aspiring developers.",
-      skills: ["Teaching", "Curriculum Development", "HTML", "JavaScript", "Java", "Adobe Suite"]
+      skills: ["Teaching", "Curriculum Development", "HTML", "JavaScript", "Python", "Adobe Suite"]
     },
     {
       name: "Value Logistics",

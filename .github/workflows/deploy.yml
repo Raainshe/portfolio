@@ -57,6 +57,32 @@ jobs:
         
         echo "All secrets are available. Proceeding with deployment..."
       
+    - name: Test SSH connectivity
+      run: |
+        echo "Testing SSH connectivity to ${{ secrets.HOST }}:${{ secrets.PORT }}..."
+        
+        # Create a temporary SSH key file
+        echo "${{ secrets.SSH_KEY }}" > /tmp/deploy_key
+        chmod 600 /tmp/deploy_key
+        
+        # Test SSH connection
+        timeout 30 ssh -i /tmp/deploy_key -o StrictHostKeyChecking=no -o ConnectTimeout=10 -p ${{ secrets.PORT }} ${{ secrets.USERNAME }}@${{ secrets.HOST }} "echo 'SSH connection successful'"
+        
+        if [ $? -eq 0 ]; then
+          echo "✅ SSH connection test passed"
+        else
+          echo "❌ SSH connection test failed"
+          echo "This could be due to:"
+          echo "1. Firewall blocking connections"
+          echo "2. SSH service not running"
+          echo "3. Incorrect host/port/credentials"
+          echo "4. Network connectivity issues"
+          exit 1
+        fi
+        
+        # Clean up
+        rm -f /tmp/deploy_key
+      
     - name: Deploy to server
       uses: appleboy/ssh-action@v1.0.3
       with:
@@ -94,6 +120,7 @@ jobs:
         port: ${{ secrets.PORT }}
         source: "dist/*"
         target: "/tmp/vue-deploy/"
+        debug: true
         
     - name: Finalize deployment
       uses: appleboy/ssh-action@v1.0.3

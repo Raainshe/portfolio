@@ -39,6 +39,13 @@
             </button>
             <button
               class="btn btn-outline-secondary mx-2"
+              @click="open('email')"
+              v-tooltip.bottom="'Email'"
+            >
+              <i class="fas fa-envelope"></i>
+            </button>
+            <button
+              class="btn btn-outline-secondary mx-2"
               @click="open('resume')"
               v-tooltip.bottom="'Resume'"
             >
@@ -84,6 +91,9 @@ export default {
           break;
         case "github":
           window.open(this.github, "_blank");
+          break;
+        case "email":
+          window.open("mailto:ryanbwgt@gmail.com", "_blank");
           break;
         case "resume":
           const link = document.createElement('a');

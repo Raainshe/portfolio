@@ -59,6 +59,14 @@
                 >portfolio</a
               >
             </li>
+            <li class="nav-item mx-2">
+              <a
+                class="nav-link"
+                href="mailto:ryanbwgt@gmail.com"
+                :class="{ 'text-light': nightMode }"
+                ><i class="fas fa-envelope"></i></a
+              >
+            </li>
             <li class="nav-item ml-2">
               <a
                 class="nav-link"

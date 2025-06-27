@@ -25,6 +25,12 @@
             </button>
             <button
               class="btn btn-outline-secondary mx-2"
+              @click="open('email')"
+            >
+              <i class="fas fa-envelope"></i>
+            </button>
+            <button
+              class="btn btn-outline-secondary mx-2"
               @click="open('resume')"
             >
               <i class="fa fa-file"></i>
@@ -61,6 +67,9 @@ export default {
           break;
         case "github":
           window.open(this.github, "_blank");
+          break;
+        case "email":
+          window.open("mailto:ryanbwgt@gmail.com", "_blank");
           break;
         case "resume":
           const link = document.createElement('a');

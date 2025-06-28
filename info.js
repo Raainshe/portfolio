@@ -267,10 +267,10 @@ let info = {
       technologies: ["HTML", "CSS", "JavaScript", "ASP.NET"],
       category: "E-commerce",
       date: "2022",
-      github: "",
+      github: "https://github.com/MbusoMakitla/AddaxZ",
       visit: "http://www.addaxz.co.za/",
       description:
-        "A comprehensive e-commerce platform for Addaxz. Built with WordPress and WooCommerce, featuring product catalog, shopping cart functionality, secure payment processing, and responsive design for optimal user experience."
+        "A comprehensive e-commerce platform for Addaxz built from the ground up using ASP.NET. Features product catalog, shopping cart functionality, secure payment processing, and responsive design for optimal user experience. Includes an admin area where site administrators can manage products, orders, and view comprehensive site statistics."
     },
     {
       name: "Digikraal (E-commerce)",

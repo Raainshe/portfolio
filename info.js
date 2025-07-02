@@ -187,6 +187,18 @@ let info = {
       icon: "fa fa-certificate"
     }
   ],
+  languages: [
+    {
+      name: "English",
+      rating: 5,
+      tag: "Native Speaker"
+    },
+    {
+      name: "German",
+      rating: 1,
+      tag: "Actively Learning"
+    }
+  ],
   portfolio: [
     {
       name: "SBJ Application Form",
@@ -287,14 +299,14 @@ let info = {
           img: require("./src/assets/digikraal2.png")
         }
       ],
-      technologies: ["WordPress", "WooCommerce", "E-commerce", "HTML", "CSS", "JavaScript"],
+      technologies: ["Vue.js", "Node.js", "MongoDB", "E-commerce", "HTML", "CSS", "JavaScript"],
       category: "E-commerce",
       date: "2022",
-      github: "",
+      github: "https://github.com/Tiny-Optics/digikraalLP",
       visit: "http://www.digikraal.co.za",
       collaboration: "Team",
       description:
-        "A full-featured e-commerce website for Digikraal developed with WordPress and WooCommerce. Features product management, user authentication, payment integration, and mobile-responsive design for seamless shopping experience."
+        "A full-featured e-commerce website for Digikraal developed with WordPress and WooCommerce. I was primarily responsible for the frontend development, creating responsive layouts, custom styling, and implementing user interface components. I collaborated closely with my partner on the database work using MongoDB, designing data structures and implementing database queries. Additionally, I contributed to the backend development by writing several backend functions that are called from the frontend, ensuring seamless integration between the user interface and server-side logic.<br/><br/>The project features comprehensive product management, user authentication, payment integration, and mobile-responsive design for an optimal shopping experience. My role involved both frontend and backend development, demonstrating full-stack capabilities while working effectively in a collaborative team environment."
     },
     
   ],
@@ -337,7 +349,7 @@ let info = {
       visit: "",
       collaboration: "Team",
       description:
-        "A raycasting 3D engine written in C, inspired by classic games like Wolfenstein 3D. This project demonstrates low-level graphics programming, real-time rendering, and game engine fundamentals. Features include map parsing, player movement, wall rendering, and basic texture mapping. Built as part of the 42 curriculum, it showcases strong skills in C, algorithms, and graphics."
+        "A raycasting 3D engine written in C, inspired by classic games like Wolfenstein 3D. This project was developed using pair programming methodology, where I was actively involved in the development of the entire project from conception to completion. The project demonstrates low-level graphics programming, real-time rendering, and game engine fundamentals. Features include map parsing, player movement, wall rendering, and basic texture mapping. Built as part of the 42 curriculum, it showcases strong skills in C, algorithms, and graphics, as well as effective collaboration and pair programming techniques."
     },
     {
       name: "minishell",
@@ -354,7 +366,7 @@ let info = {
       visit: "",
       collaboration: "Team",
       description:
-        "A bash-like shell implementation for 42 School featuring command execution, pipes, redirections, environment variable expansion, signal handling, and built-in commands. Includes a custom tokenizer, a context-based garbage collector for memory management, and comprehensive tests for both functionality and memory leaks."
+        "A bash-like shell implementation for 42 School featuring command execution, pipes, redirections, environment variable expansion, signal handling, and built-in commands. This project was developed using pair programming methodology, where I was actively involved in the development of the entire project from conception to completion. Includes a custom tokenizer, a context-based garbage collector for memory management, and comprehensive tests for both functionality and memory leaks. The project demonstrates strong skills in systems programming, memory management, and effective collaboration through pair programming techniques."
     },
     {
       name: "fractol",

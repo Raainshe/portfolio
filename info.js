@@ -202,7 +202,7 @@ let info = {
       visit: "",
       collaboration: "Team",
       description:
-        "A comprehensive loan application form system with integration to Run A Loan API. Features include user authentication, file uploads, digital signatures, automated data synchronization, Google Drive integration for document storage, and Trello integration for workflow management. Built with Vue.js frontend and Node.js backend, featuring real-time form validation, email notifications via SendGrid, and scheduled API updates."
+        "A comprehensive loan application form system with integration to Run A Loan API. I was responsible for developing the complete frontend using Vue.js 3, implementing responsive design with Bootstrap 5, and managing state with Pinia. My key contributions included integrating the Trello API for workflow management, implementing Google Drive API for document storage, and handling MongoDB database integration for user data and application storage.<br/><br/>The frontend features real-time form validation, digital signature capabilities, file upload functionality, and seamless integration with external APIs. I also implemented user authentication flows and created an intuitive user interface that streamlines the loan application process. The system includes automated data synchronization, email notifications via SendGrid, and scheduled API updates to ensure data consistency across all integrated platforms."
     },
     {
       name: "BTEC Solution",
@@ -330,7 +330,7 @@ let info = {
           img: require("./src/assets/cub3d2.png")
         }
       ],
-      technologies: ["C", "Makefile", "Raycasting"],
+      technologies: ["C", "Makefile", "Raycasting", "MLX42", "Graphics Programming", "Mathematics", "Graphics Programming", "Mathematics"],
       category: "Graphics/Game Engine",
       github: "https://github.com/Raainshe/cub3d",
       date: "2025",
@@ -355,6 +355,38 @@ let info = {
       collaboration: "Team",
       description:
         "A bash-like shell implementation for 42 School featuring command execution, pipes, redirections, environment variable expansion, signal handling, and built-in commands. Includes a custom tokenizer, a context-based garbage collector for memory management, and comprehensive tests for both functionality and memory leaks."
+    },
+    {
+      name: "fractol",
+      title: "Fractal Viewer",
+      pictures: [
+        {
+          img: require("./src/assets/fractol.png")
+        },
+        {
+          img: require("./src/assets/fractol2.png")
+        },
+        {
+          img: require("./src/assets/fractol3.png")
+        },
+        {
+          img: require("./src/assets/fractol4.png")
+        },
+        {
+          img: require("./src/assets/fractol5.png")
+        },
+        {
+          img: require("./src/assets/fractol6.png")
+        }
+      ],
+      technologies: ["C", "MLX42", "Graphics Programming", "Mathematics", "Fractals"],
+      category: "Graphics/Mathematics",
+      github: "https://github.com/Raainshe/fractol",
+      date: "2024",
+      visit: "",
+      collaboration: "Solo",
+      description:
+        "A sophisticated graphical program that renders interactive Mandelbrot and Julia sets using the MLX42 graphics library. This project demonstrates advanced mathematical concepts in computer graphics, implementing complex number calculations and fractal generation algorithms.<br/><br/>The program features real-time interactive capabilities including zoom in/out with mouse scroll, panning with arrow keys, and smooth window termination. It renders beautiful fractal patterns with smooth color gradients based on iteration count, supporting multiple Julia set variations with customizable parameters. The implementation uses double-precision calculations for accurate mathematical rendering and includes comprehensive error handling for parameter validation and memory management.<br/><br/>Built as part of the 42 School curriculum, this project showcases strong skills in C programming, graphics programming, mathematical algorithms, and user interface design. The fractal viewer can display various preset Julia set parameters, each producing unique and visually stunning mathematical patterns."
     }
   ],
   recommendations: [

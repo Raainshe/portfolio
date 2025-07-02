@@ -66,6 +66,7 @@
                 }"
               >
                 <h5 class="language-name">{{ language.name }}</h5>
+                <div class="language-flag">{{ language.flag }}</div>
                 <div class="rating-container">
                   <div
                     v-for="star in 5"
@@ -150,8 +151,14 @@ export default {
 .language-name {
   font-size: 18px;
   font-weight: 600;
-  margin-bottom: 15px;
+  margin-bottom: 8px;
   color: inherit;
+}
+
+.language-flag {
+  font-size: 32px;
+  margin-bottom: 15px;
+  line-height: 1;
 }
 
 .rating-container {

@@ -188,13 +188,15 @@ let info = {
     }
   ],
   languages: [
-    {
-      name: "English",
-      rating: 5,
-      tag: "Native Speaker"
-    },
+          {
+        name: "English",
+        flag: "🇿🇦",
+        rating: 5,
+        tag: "Native Speaker"
+      },
     {
       name: "German",
+      flag: "🇩🇪",
       rating: 1,
       tag: "Actively Learning"
     }

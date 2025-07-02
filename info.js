@@ -14,7 +14,7 @@ let info = {
     linkedin: "https://www.linkedin.com/in/ryan-makoni/",
     github: "https://github.com/Raainshe",
     angellist: "https://angel.co/u/ryan-makoni",
-    resume: "RyanMakoniResume.pdf"
+    resume: "/RyanMakoniResume.pdf"
   },
   education: [
     {

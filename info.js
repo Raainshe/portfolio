@@ -314,6 +314,7 @@ let info = {
     },
     {
       name: "cub3d",
+      title: "Raycasting 3D Engine",
       pictures: [
         {
           img: require("./src/assets/cub3d.png")
@@ -332,6 +333,7 @@ let info = {
     },
     {
       name: "minishell",
+      title: "Bash-like Shell",
       pictures: [
         {
           img: require("./src/assets/minishell.png")

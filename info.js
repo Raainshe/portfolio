@@ -200,6 +200,7 @@ let info = {
       date: "2023",
       github: "https://github.com/Tiny-Optics/SBJ-application-form",
       visit: "",
+      collaboration: "Team",
       description:
         "A comprehensive loan application form system with integration to Run A Loan API. Features include user authentication, file uploads, digital signatures, automated data synchronization, Google Drive integration for document storage, and Trello integration for workflow management. Built with Vue.js frontend and Node.js backend, featuring real-time form validation, email notifications via SendGrid, and scheduled API updates."
     },
@@ -218,6 +219,7 @@ let info = {
       date: "2023",
       github: "https://github.com/Raainshe/BTECSolution",
       visit: "https://btecsolutions.co.za/",
+      collaboration: "Solo",
       description:
         "A web application built with ASP.NET and C# backend, featuring JavaScript and CSS frontend. The project demonstrates full-stack development capabilities with modern web technologies, providing a comprehensive solution for BTEC-related functionality."
     },
@@ -236,6 +238,7 @@ let info = {
       date: "2023",
       github: "https://github.com/Raainshe/TusoWellness",
       visit: "https://www.tusowellness.com/",
+      collaboration: "Solo",
       description:
         "A modern, responsive landing page for Tuso Wellness. Designed and developed with clean, user-friendly interface focusing on wellness services. Features responsive design, smooth animations, and optimized for all devices."
     },
@@ -254,6 +257,7 @@ let info = {
       date: "2019 - 2021",
       github: "",
       visit: "http://www.masteryourfinances.net/",
+      collaboration: "Solo",
       description:
         "Developed and maintained the company website for Master Your Finances. Created digital marketing materials and provided ongoing technical support. The website serves as a platform for financial education and services."
     },
@@ -269,6 +273,7 @@ let info = {
       date: "2022",
       github: "https://github.com/MbusoMakitla/AddaxZ",
       visit: "http://www.addaxz.co.za/",
+      collaboration: "Team",
       description:
         "A comprehensive e-commerce platform for Addaxz built from the ground up using ASP.NET. Features product catalog, shopping cart functionality, secure payment processing, and responsive design for optimal user experience. Includes an admin area where site administrators can manage products, orders, and view comprehensive site statistics."
     },
@@ -287,6 +292,7 @@ let info = {
       date: "2022",
       github: "",
       visit: "http://www.digikraal.co.za",
+      collaboration: "Team",
       description:
         "A full-featured e-commerce website for Digikraal developed with WordPress and WooCommerce. Features product management, user authentication, payment integration, and mobile-responsive design for seamless shopping experience."
     },
@@ -309,6 +315,7 @@ let info = {
       github: "https://github.com/Raainshe/Emby-Torrent-Bot",
       date: "2024",
       visit: "",
+      collaboration: "Solo",
       description:
         "A comprehensive Discord bot that allows users to interact with qBittorrent through Discord slash commands. Features include listing torrents, adding magnet links with category-based save paths, displaying download progress, deleting torrents, showing disk space usage with pie charts, and automatic seeding time management.<br/><br/>The bot includes intelligent seeding management that automatically stops torrents after 10x their download duration, helping maintain good seeding ratios while preventing indefinite seeding. Built with TypeScript and Discord.js, it provides a user-friendly interface for managing torrent downloads remotely through Discord commands."
     },
@@ -328,6 +335,7 @@ let info = {
       github: "https://github.com/Raainshe/cub3d",
       date: "2025",
       visit: "",
+      collaboration: "Team",
       description:
         "A raycasting 3D engine written in C, inspired by classic games like Wolfenstein 3D. This project demonstrates low-level graphics programming, real-time rendering, and game engine fundamentals. Features include map parsing, player movement, wall rendering, and basic texture mapping. Built as part of the 42 curriculum, it showcases strong skills in C, algorithms, and graphics."
     },
@@ -344,6 +352,7 @@ let info = {
       github: "https://github.com/Raainshe/minishell",
       date: "2025",
       visit: "",
+      collaboration: "Team",
       description:
         "A bash-like shell implementation for 42 School featuring command execution, pipes, redirections, environment variable expansion, signal handling, and built-in commands. Includes a custom tokenizer, a context-based garbage collector for memory management, and comprehensive tests for both functionality and memory leaks."
     }

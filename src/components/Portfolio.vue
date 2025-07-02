@@ -60,21 +60,32 @@
               class="col-xl-6 col-bg-6 col-md-12 col-sm-12"
               style="position: relative;"
             >
-              <vueper-slides
-                :dragging-distance="50"
-                fixed-height="300px"
-                :bullets="false"
-                slide-content-outside="bottom"
-                style="position: aboslute"
-                  @click.prevent="showDesignModalFn(design)"
+              <div style="position: relative;">
+                <vueper-slides
+                  :dragging-distance="50"
+                  fixed-height="300px"
+                  :bullets="false"
+                  slide-content-outside="bottom"
+                  style="position: aboslute"
+                    @click.prevent="showDesignModalFn(design)"
 
-              >
-                <vueper-slide
-                  v-for="(slide, i) in design.pictures"
-                  :key="i"
-                  :image="slide.img"
-                />
-              </vueper-slides>
+                >
+                  <vueper-slide
+                    v-for="(slide, i) in design.pictures"
+                    :key="i"
+                    :image="slide.img"
+                  />
+                </vueper-slides>
+                <div 
+                  class="collaboration-tag"
+                  :class="{
+                    'team-tag': design.collaboration === 'Team',
+                    'solo-tag': design.collaboration === 'Solo'
+                  }"
+                >
+                  {{ design.collaboration }}
+                </div>
+              </div>
               <div
                 style="width: 100%; display: flex; justify-content: space-between"
                 class="mt-2"
@@ -382,5 +393,27 @@ export default {
   font-size: 14px;
   font-weight: 400;
   opacity: 0.75
+}
+
+.collaboration-tag {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: white;
+  z-index: 10;
+}
+
+.team-tag {
+  background-color: #28a745;
+}
+
+.solo-tag {
+  background-color: #007bff;
 }
 </style>

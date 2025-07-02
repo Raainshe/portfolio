@@ -8,12 +8,21 @@
         'bg-dark3': nightMode,
       }"
     >
-      <div style="height: 180px;">
+      <div style="height: 180px; position: relative;">
         <img
           class="card-img-top"
           :src="portfolio.pictures[0].img"
           alt="Card image cap"
         />
+        <div 
+          class="collaboration-tag"
+          :class="{
+            'team-tag': portfolio.collaboration === 'Team',
+            'solo-tag': portfolio.collaboration === 'Solo'
+          }"
+        >
+          {{ portfolio.collaboration }}
+        </div>
       </div>
       <div class="card-body pborder-top">
         <h5 class="title2">{{ portfolio.name }}</h5>
@@ -206,5 +215,27 @@ div.img-div {
 
 .bg-dark4 {
   background-color: #494e55 !important;
+}
+
+.collaboration-tag {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: white;
+  z-index: 10;
+}
+
+.team-tag {
+  background-color: #28a745;
+}
+
+.solo-tag {
+  background-color: #007bff;
 }
 </style>

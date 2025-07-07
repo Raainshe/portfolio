@@ -1,45 +1,10 @@
-import Vue from 'vue'
+import { createApp } from 'vue'
 import App from './App.vue'
 
-import AOS from 'aos'
-import 'aos/dist/aos.css'
-import VueParallaxJs from 'vue-parallax-js'
-import VueScrollTo from 'vue-scrollto'
-import VueRouter from 'vue-router'
-import VTooltip from 'v-tooltip'
+const app = createApp(App)
 
-var VueCookie = require('vue-cookie');
+app.config.productionTip = false
 
-Vue.use(VTooltip)
-Vue.use(VueRouter)
-Vue.use(VueScrollTo)
-Vue.use(VueCookie);
-Vue.use(VueParallaxJs)
+app.mount('#app')
 
-Vue.config.productionTip = false
-
-const routes = [
-  { path: '/'}
-]
-
-const router = new VueRouter({
-  mode:'history',
-  routes // short for `routes: routes`
-})
-
-// Track page views with Google Analytics
-router.afterEach((to) => {
-  if (typeof gtag !== 'undefined') {
-    gtag('config', 'G-ZW97H5HYPX', {
-      page_path: to.fullPath
-    })
-  }
-})
-
-new Vue({
-  created () {
-    AOS.init()
-  },
-  router,
-  render: h => h(App),
-}).$mount('#app')
+console.log('Vue 3 app mounted successfully')

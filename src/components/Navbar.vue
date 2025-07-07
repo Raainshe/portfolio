@@ -78,7 +78,7 @@
                     'fas fa-moon': nightMode,
                     'far fa-moon': !nightMode,
                   }"
-                  v-tooltip.bottom="nightMode ? 'Light Mode' : 'Night Mode'"
+                  :title="nightMode ? 'Light Mode' : 'Night Mode'"
                 ></i
               ></a>
             </li>
@@ -100,6 +100,7 @@ export default {
       type: Boolean,
     },
   },
+  emits: ['scroll', 'nightMode'],
   data() {
     return {
       navbarConfig: info.config.navbar,

@@ -25,8 +25,27 @@
         :class="{ pgray: !nightMode, 'bg-secondary': nightMode }"
       />
 
-      <vue-tabs :activeTextColor="!nightMode ? '#535A5E' : '#dfdfdf'">
-        <v-tab title="development">
+      <!-- Custom Tabs -->
+      <div class="tabs-container">
+        <div class="tabs-header">
+          <button 
+            class="tab-button" 
+            :class="{ 'active': activeTab === 'development' }"
+            @click="activeTab = 'development'"
+          >
+            development
+          </button>
+          <button 
+            class="tab-button" 
+            :class="{ 'active': activeTab === 'personal' }"
+            @click="activeTab = 'personal'"
+          >
+            personal projects/42 projects
+          </button>
+        </div>
+
+        <!-- Development Tab -->
+        <div v-if="activeTab === 'development'" class="tab-content">
           <br />
           <div class="row">
             <div
@@ -49,9 +68,10 @@
               />
             </div>
           </div>
-        </v-tab>
+        </div>
 
-        <v-tab title="personal projects/42 projects">
+        <!-- Personal Projects Tab -->
+        <div v-if="activeTab === 'personal'" class="tab-content">
           <div class="row">
             <div
               v-for="(design, idx) in desgin_info"
@@ -61,21 +81,35 @@
               style="position: relative;"
             >
               <div style="position: relative;">
-                <vueper-slides
-                  :dragging-distance="50"
-                  fixed-height="300px"
-                  :bullets="false"
-                  slide-content-outside="bottom"
-                  style="position: aboslute"
-                    @click.prevent="showDesignModalFn(design)"
-
-                >
-                  <vueper-slide
-                    v-for="(slide, i) in design.pictures"
-                    :key="i"
-                    :image="slide.img"
-                  />
-                </vueper-slides>
+                <!-- Simple Carousel -->
+                <div class="simple-carousel">
+                  <div class="carousel-container">
+                    <img 
+                      v-for="(slide, i) in design.pictures" 
+                      :key="i"
+                      :src="slide.img"
+                      :class="{ 'active': i === design.currentSlide }"
+                      class="carousel-slide"
+                      @click="showDesignModalFn(design)"
+                    />
+                  </div>
+                  <div class="carousel-controls">
+                    <button 
+                      @click="previousSlide(design)"
+                      class="carousel-btn"
+                      :disabled="design.currentSlide === 0"
+                    >
+                      ‹
+                    </button>
+                    <button 
+                      @click="nextSlide(design)"
+                      class="carousel-btn"
+                      :disabled="design.currentSlide === design.pictures.length - 1"
+                    >
+                      ›
+                    </button>
+                  </div>
+                </div>
                 <div 
                   class="collaboration-tag"
                   :class="{
@@ -114,8 +148,8 @@
             </div>
           </div>
           <br />
-        </v-tab>
-      </vue-tabs>
+        </div>
+      </div>
     </div>
     <transition name="modal">
       <Modal
@@ -142,24 +176,13 @@
 import Card from "./helpers/Card";
 import Modal from "./helpers/Modal";
 import DesignModal from "./helpers/DesignModal";
-import Carousel from "./helpers/Carousel";
 import info from "../../info";
-
-import { VueTabs, VTab } from "vue-nav-tabs";
-import "vue-nav-tabs/themes/vue-tabs.css";
-
-import { VueperSlides, VueperSlide } from "vueperslides";
-import "vueperslides/dist/vueperslides.css";
 
 export default {
   name: "Portfolio",
   components: {
     Card,
     Modal,
-    VueTabs,
-    VTab,
-    VueperSlides,
-    VueperSlide,
     DesignModal,
   },
   props: {
@@ -169,33 +192,29 @@ export default {
   },
   data() {
     return {
+      activeTab: 'development',
       all_info: info.portfolio,
-      desgin_info: info.portfolio_design,
+      desgin_info: info.portfolio_design.map(design => ({
+        ...design,
+        currentSlide: 0
+      })),
       portfolio_info: info.portfolio,
       showModal: false,
       showDesignModal: false,
       modal_info: {},
       design_modal_info: {},
-      data: [
-        '<div class="example-slide">Slide 1</div>',
-        '<div class="example-slide">Slide 2</div>',
-        '<div class="example-slide">Slide 3</div>',
-      ],
     };
   },
-  created() {
-    // Remove the pagination logic - show all projects
-  },
-  watch: {
-    // Remove the number watcher since we're not using pagination
-  },
   methods: {
-    next() {
-      this.$refs.flickity.next();
+    nextSlide(design) {
+      if (design.currentSlide < design.pictures.length - 1) {
+        design.currentSlide++;
+      }
     },
-
-    previous() {
-      this.$refs.flickity.previous();
+    previousSlide(design) {
+      if (design.currentSlide > 0) {
+        design.currentSlide--;
+      }
     },
     closeModal() {
       this.showModal = false;
@@ -203,26 +222,10 @@ export default {
       document.getElementsByTagName("body")[0].classList.remove("modal-open");
     },
     showModalFn(portfolio) {
-      // Track project view
-      if (typeof gtag !== 'undefined') {
-        gtag('event', 'project_view', {
-          event_category: 'portfolio',
-          event_label: portfolio.name,
-          value: 1
-        });
-      }
       this.modal_info = portfolio;
       this.showModal = true;
     },
     showDesignModalFn(design_portfolio) {
-      // Track design project view
-      if (typeof gtag !== 'undefined') {
-        gtag('event', 'project_view', {
-          event_category: 'portfolio',
-          event_label: design_portfolio.name,
-          value: 1
-        });
-      }
       this.design_modal_info = design_portfolio;
       this.showDesignModal = true;
     },
@@ -235,162 +238,110 @@ export default {
   font-size: 30px;
   font-weight: 500;
 }
-.title1 {
-  font-size: 24px;
-  font-weight: 400;
+
+/* Custom Tabs */
+.tabs-container {
+  margin-top: 20px;
+}
+
+.tabs-header {
+  display: flex;
+  border-bottom: 2px solid #e0e0e0;
+  margin-bottom: 20px;
+}
+
+.tab-button {
+  background: none;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+  color: #666;
+  transition: all 0.3s ease;
+  border-bottom: 2px solid transparent;
+}
+
+.tab-button:hover {
+  color: #669db3ff;
+}
+
+.tab-button.active {
+  color: #669db3ff;
+  border-bottom-color: #669db3ff;
+}
+
+.tab-content {
+  min-height: 400px;
+}
+
+/* Simple Carousel */
+.simple-carousel {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.carousel-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.carousel-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  cursor: pointer;
+}
+
+.carousel-slide.active {
+  opacity: 1;
+}
+
+.carousel-controls {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: space-between;
+  padding: 0 10px;
+  pointer-events: none;
+}
+
+.carousel-btn {
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+  cursor: pointer;
+  pointer-events: all;
+  transition: background 0.3s ease;
+}
+
+.carousel-btn:hover:not(:disabled) {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.carousel-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 .title2 {
   font-size: 20px;
   font-weight: 400;
-}
-
-.title3 {
-  font-size: 16px;
-  font-weight: 400;
-}
-
-.modal-enter {
-  opacity: 0;
-}
-
-.modal-leave-active {
-  opacity: 0;
-}
-
-.modal-enter .modal-container,
-.modal-leave-active .modal-container {
-  -webkit-transform: scale(1.1);
-  transform: scale(1.1);
-}
-
-.btn {
-  border-color: rgb(212, 149, 97);
-  color: rgb(212, 149, 97);
-}
-
-.btn:hover {
-  background-color: rgb(212, 149, 97);
-  border-color: rgb(212, 149, 97);
-  color: white;
-}
-
-.btn:focus {
-  background-color: rgb(212, 149, 97);
-  border-color: rgb(212, 149, 97);
-  color: white;
-}
-
-/deep/ .vue-tabs .nav-tabs {
-  border: none;
-  font-size: 20px;
-  font-weight: 500;
-  display: flex;
-
-  justify-content: center;
-}
-
-/deep/ .vue-tabs .tabs__link {
-  color: #a0a0a0;
-}
-
-/deep/ .vue-tabs .nav-tabs > li.active > a {
-  background: transparent;
-  border: none;
-  transition: all 0.5s;
-  padding-right: 0;
-  padding-left: 0;
-  margin-right: 15px;
-  margin-left: 15px;
-}
-
-/deep/ .vue-tabs .nav-tabs > li > a:hover {
-  background: transparent;
-  color: #cbcbcb;
-  transition: all 0.5s;
-}
-
-/deep/ .vue-tabs .nav-tabs > li > a {
-  background: transparent;
-  border: none;
-  transition: all 0.5s;
-}
-
-/deep/ .vue-tabs .nav-tabs > li > a:after {
-  content: "";
-  width: 20%;
-  position: absolute;
-  bottom: 3px;
-  border-width: 0 0 2px;
-  border-style: solid;
-  transition: all 0.5s;
-}
-
-/deep/ .vue-tabs .nav-tabs > li.active > a:after {
-  width: 100%;
-  transition: all 0.5s;
-}
-
-.design-img {
-  width: 100%;
-  border-radius: 15px;
-  transition: all 0.5s;
-}
-
-.dimg {
-  position: relative;
-  border-radius: 15px;
-}
-.middle {
-  transition: all 0.5s;
-  opacity: 0;
-  position: absolute;
-  bottom: 0px;
-  left: 70px;
-  transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  text-align: center;
-  padding: 20px;
-}
-
-.dimg:hover .design-img {
-  position: relative;
-  border-radius: 15px;
-  opacity: 0.1;
-  cursor: pointer;
-}
-
-.dimg:hover .middle {
-  opacity: 1;
-}
-
-/deep/.vueperslide {
-  border-radius: 10px !important;
-}
-/deep/.vueperslides__parallax-wrapper {
-  border-radius: 10px !important;
-}
-
-.btn {
-  border-color: #669db3ff;
-  color: #669db3ff;
-}
-
-.btn:hover {
-  background-color: #669db3ff;
-  border-color: #669db3ff;
-  color: white;
-}
-
-.btn:focus {
-  background-color: #669db3ff;
-  border-color: #669db3ff;
-  color: white;
-}
-/deep/ .vueperslides__arrow {
-  outline: none !important;
-  border: none;
-  color: grey;
 }
 
 .badge {
@@ -431,5 +382,31 @@ export default {
 
 .solo-tag {
   background-color: #007bff;
+}
+
+.btn {
+  border-color: #669db3ff;
+  color: #669db3ff;
+}
+
+.btn:hover {
+  background-color: #669db3ff;
+  border-color: #669db3ff;
+  color: white;
+}
+
+.btn:focus {
+  background-color: #669db3ff;
+  border-color: #669db3ff;
+  color: white;
+}
+
+/* Modal transitions */
+.modal-enter-active, .modal-leave-active {
+  transition: opacity 0.3s;
+}
+
+.modal-enter, .modal-leave-to {
+  opacity: 0;
 }
 </style>

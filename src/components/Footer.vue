@@ -71,7 +71,7 @@ export default {
         case "email":
           window.open("mailto:ryanbwgt@gmail.com", "_blank");
           break;
-        case "resume":
+        case "resume": {
           const link = document.createElement('a');
           link.href = this.resume;
           link.download = 'RyanMakoniResume.pdf';
@@ -79,6 +79,7 @@ export default {
           link.click();
           document.body.removeChild(link);
           break;
+        }
       }
     },
   },

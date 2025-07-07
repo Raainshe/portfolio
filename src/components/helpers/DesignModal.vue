@@ -68,13 +68,11 @@
 </template>
 
 <script>
-import Carousel from "./Carousel";
 import Gallery from "./Gallery";
 
 export default {
   name: "Modal",
   components: {
-    Carousel,
     Gallery,
   },
   props: {
@@ -93,14 +91,7 @@ export default {
   },
   methods: {
     open(url) {
-      // Track GitHub link clicks
-      if (url && url.includes('github.com') && typeof gtag !== 'undefined') {
-        gtag('event', 'github_link_click', {
-          event_category: 'external_links',
-          event_label: 'github_repository',
-          value: 1
-        });
-      }
+      // Removed Google Analytics tracking
       window.open(url, "_blank");
     },
   },

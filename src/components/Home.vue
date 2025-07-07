@@ -26,28 +26,28 @@
             <button
               class="btn btn-outline-secondary mx-2 "
               @click="open('linkedin')"
-              v-tooltip.bottom="'LinkedIn'"
+              title="LinkedIn"
             >
               <i class="fab fa-linkedin"></i>
             </button>
             <button
               class="btn btn-outline-secondary mx-2"
               @click="open('github')"
-              v-tooltip.bottom="'GitHub'"
+              title="GitHub"
             >
               <i class="fab fa-github"></i>
             </button>
             <button
               class="btn btn-outline-secondary mx-2"
               @click="open('email')"
-              v-tooltip.bottom="'Email'"
+              title="Email"
             >
               <i class="fas fa-envelope"></i>
             </button>
             <button
               class="btn btn-outline-secondary mx-2"
               @click="open('resume')"
-              v-tooltip.bottom="'Resume'"
+              title="Resume"
             >
               <i class="fa fa-file"></i>
             </button>
@@ -61,13 +61,8 @@
 <script>
 import info from "../../info";
 
-import Wave from "./helpers/Wave";
-
 export default {
   name: "Home",
-  components: {
-    Wave,
-  },
   props: {
     nightMode: {
       type: Boolean,
@@ -87,40 +82,15 @@ export default {
     open(link) {
       switch (link) {
         case "linkedin":
-          if (typeof gtag !== 'undefined') {
-            gtag('event', 'social_link_click', {
-              event_category: 'social_media',
-              event_label: 'linkedin_profile'
-            });
-          }
           window.open(this.linkedin, "_blank");
           break;
         case "github":
-          if (typeof gtag !== 'undefined') {
-            gtag('event', 'social_link_click', {
-              event_category: 'social_media',
-              event_label: 'github_profile'
-            });
-          }
           window.open(this.github, "_blank");
           break;
         case "email":
-          if (typeof gtag !== 'undefined') {
-            gtag('event', 'contact_click', {
-              event_category: 'contact',
-              event_label: 'email_contact'
-            });
-          }
           window.open("mailto:ryanbwgt@gmail.com", "_blank");
           break;
-        case "resume":
-          // Track resume download
-          if (typeof gtag !== 'undefined') {
-            gtag('event', 'resume_download', {
-              event_category: 'downloads',
-              event_label: 'resume_pdf'
-            });
-          }
+        case "resume": {
           const link = document.createElement('a');
           link.href = this.resume;
           link.download = 'RyanMakoniResume.pdf';
@@ -128,6 +98,7 @@ export default {
           link.click();
           document.body.removeChild(link);
           break;
+        }
       }
     },
   },

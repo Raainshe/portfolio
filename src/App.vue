@@ -1,5 +1,6 @@
 <template>
   <div id="app" :class="{ 'text-dark': !nightMode, 'text-light': nightMode }">
+    <h1>Vue 3 Test - App is working!</h1>
     <Navbar @scroll="scrollTo" @nightMode="switchMode" :nightMode="nightMode" />
     <div class="parent">
       <Home :nightMode="nightMode" />
@@ -31,6 +32,7 @@ export default {
     Portfolio,
     Footer,
   },
+  emits: ['scroll', 'nightMode'],
   data() {
     return {
       nightMode: true,
@@ -38,9 +40,10 @@ export default {
     };
   },
   created() {
-    if (this.config.use_cookies) {
-      this.nightMode = this.$cookie.get("nightMode") === "true" ? true : false;
-    }
+    // Temporarily disabled cookie functionality
+    // if (this.config.use_cookies) {
+    //   this.nightMode = this.$cookie.get("nightMode") === "true" ? true : false;
+    // }
   },
   mounted() {
     ["about", "skills", "portfolio"].forEach((l) => {
@@ -52,20 +55,18 @@ export default {
   },
   methods: {
     switchMode(mode) {
-      if (this.config.use_cookies) {
-        this.$cookie.set("nightMode", mode);
-      }
+      // Temporarily disabled cookie functionality
+      // if (this.config.use_cookies) {
+      //   this.$cookie.set("nightMode", mode);
+      // }
       this.nightMode = mode;
     },
     scrollTo(ele) {
       if (ele == "home") {
-        this.$router.push(`/`);
         window.scrollTo({ top: -80, behavior: "smooth" });
       } else {
         var elementPosition = document.getElementById(ele).offsetTop;
         window.scrollTo({ top: elementPosition - 35, behavior: "smooth" });
-        if (this.$router.history.current.path !== `/${ele}`)
-          this.$router.push(`/${ele}`);
       }
     },
   },

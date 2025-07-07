@@ -27,6 +27,15 @@ const router = new VueRouter({
   routes // short for `routes: routes`
 })
 
+// Track page views with Google Analytics
+router.afterEach((to) => {
+  if (typeof gtag !== 'undefined') {
+    gtag('config', 'G-ZW97H5HYPX', {
+      page_path: to.fullPath
+    })
+  }
+})
+
 new Vue({
   created () {
     AOS.init()

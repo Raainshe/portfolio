@@ -87,15 +87,40 @@ export default {
     open(link) {
       switch (link) {
         case "linkedin":
+          if (typeof gtag !== 'undefined') {
+            gtag('event', 'social_link_click', {
+              event_category: 'social_media',
+              event_label: 'linkedin_profile'
+            });
+          }
           window.open(this.linkedin, "_blank");
           break;
         case "github":
+          if (typeof gtag !== 'undefined') {
+            gtag('event', 'social_link_click', {
+              event_category: 'social_media',
+              event_label: 'github_profile'
+            });
+          }
           window.open(this.github, "_blank");
           break;
         case "email":
+          if (typeof gtag !== 'undefined') {
+            gtag('event', 'contact_click', {
+              event_category: 'contact',
+              event_label: 'email_contact'
+            });
+          }
           window.open("mailto:ryanbwgt@gmail.com", "_blank");
           break;
         case "resume":
+          // Track resume download
+          if (typeof gtag !== 'undefined') {
+            gtag('event', 'resume_download', {
+              event_category: 'downloads',
+              event_label: 'resume_pdf'
+            });
+          }
           const link = document.createElement('a');
           link.href = this.resume;
           link.download = 'RyanMakoniResume.pdf';

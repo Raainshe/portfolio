@@ -203,10 +203,26 @@ export default {
       document.getElementsByTagName("body")[0].classList.remove("modal-open");
     },
     showModalFn(portfolio) {
+      // Track project view
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'project_view', {
+          event_category: 'portfolio',
+          event_label: portfolio.name,
+          value: 1
+        });
+      }
       this.modal_info = portfolio;
       this.showModal = true;
     },
     showDesignModalFn(design_portfolio) {
+      // Track design project view
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'project_view', {
+          event_category: 'portfolio',
+          event_label: design_portfolio.name,
+          value: 1
+        });
+      }
       this.design_modal_info = design_portfolio;
       this.showDesignModal = true;
     },

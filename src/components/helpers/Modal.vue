@@ -98,6 +98,14 @@ export default {
   },
   methods: {
     open(url) {
+      // Track GitHub link clicks
+      if (url && url.includes('github.com') && typeof gtag !== 'undefined') {
+        gtag('event', 'github_link_click', {
+          event_category: 'external_links',
+          event_label: 'github_repository',
+          value: 1
+        });
+      }
       window.open(url, "_blank");
     },
   },

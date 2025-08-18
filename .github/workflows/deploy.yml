@@ -171,19 +171,34 @@ jobs:
           echo "Testing write permissions:"
           touch /tmp/vue-deploy/test-write.txt && rm /tmp/vue-deploy/test-write.txt && echo "✅ Write permissions OK" || echo "❌ Write permissions FAILED"
           
-    - name: Upload files
-      if: success()
-      uses: appleboy/scp-action@v0.1.7
-      with:
-        host: ${{ secrets.HOST }}
-        username: ${{ secrets.USERNAME }}
-        key: ${{ secrets.SSH_KEY }}
-        port: ${{ secrets.PORT }}
-        source: "dist"
-        target: "/tmp/vue-deploy/"
-        timeout: "300s"
-        command_timeout: "300s"
-        debug: true
+    - name: Debug local dist directory
+      run: |
+        echo "Checking local dist directory before upload..."
+        pwd
+        ls -la
+        echo "Contents of dist directory:"
+        ls -la dist/
+        echo "Total files in dist: $(find dist -type f | wc -l)"
+        echo "Disk space:"
+        df -h
+        echo "File sizes in dist:"
+        du -sh dist/*
+          
+    - name: Upload files with rsync
+      run: |
+        echo "Setting up SSH key for rsync..."
+        echo "${{ secrets.SSH_KEY }}" > /tmp/deploy_key
+        chmod 600 /tmp/deploy_key
+        
+        echo "Starting rsync upload..."
+        rsync -avz -e "ssh -i /tmp/deploy_key -o StrictHostKeyChecking=no -p ${{ secrets.PORT }}" \
+          --progress \
+          --stats \
+          dist/ \
+          ${{ secrets.USERNAME }}@${{ secrets.HOST }}:/tmp/vue-deploy/
+        
+        echo "Upload completed. Cleaning up SSH key..."
+        rm -f /tmp/deploy_key
         
     - name: Finalize deployment
       if: success()
@@ -199,15 +214,10 @@ jobs:
           # Remove old files
           rm -rf /var/www/html/*
           
-          # Since we're copying the entire dist directory, move its contents
-          if [ -d /tmp/vue-deploy/dist ]; then
-            echo "Moving files from /tmp/vue-deploy/dist/ to /var/www/html/"
-            mv /tmp/vue-deploy/dist/* /var/www/html/
-            rm -rf /tmp/vue-deploy/dist
-          else
-            echo "No dist directory found, moving all files from /tmp/vue-deploy/"
-            mv /tmp/vue-deploy/* /var/www/html/
-          fi
+          # With rsync, files are uploaded directly to /tmp/vue-deploy/
+          echo "Moving files from /tmp/vue-deploy/ to /var/www/html/"
+          ls -la /tmp/vue-deploy/
+          mv /tmp/vue-deploy/* /var/www/html/
           
           # Set proper permissions
           chown -R www-data:www-data /var/www/html

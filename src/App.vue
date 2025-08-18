@@ -1,12 +1,12 @@
 <template>
   <div id="app" :class="{ 'text-dark': !nightMode, 'text-light': nightMode }">
-    <Navbar @scroll="scrollTo" @nightMode="switchMode" :nightMode="nightMode" />
+    <Navbar @scroll="scrollTo" @nightMode="switchMode" @languageChange="handleLanguageChange" :nightMode="nightMode" />
     <div class="parent">
-      <Home :nightMode="nightMode" />
-      <About id="about" :nightMode="nightMode" />
-      <Skills id="skills" :nightMode="nightMode" />
-      <Portfolio id="portfolio" :nightMode="nightMode" />
-      <Footer :nightMode="nightMode" />
+      <Home :nightMode="nightMode" :key="languageKey" />
+      <About id="about" :nightMode="nightMode" :key="languageKey" />
+      <Skills id="skills" :nightMode="nightMode" :key="languageKey" />
+      <Portfolio id="portfolio" :nightMode="nightMode" :key="languageKey" />
+      <Footer :nightMode="nightMode" :key="languageKey" />
     </div>
   </div>
 </template>
@@ -19,7 +19,7 @@ import Skills from "./components/Skills";
 import Portfolio from "./components/Portfolio";
 import Footer from "./components/Footer";
 
-import info from "../info";
+import languageService from "./services/languageService";
 
 export default {
   name: "App",
@@ -34,7 +34,8 @@ export default {
   data() {
     return {
       nightMode: true,
-      config: info.config,
+      config: languageService.getInfo().config,
+      languageKey: 0, // Used to force re-render of child components
     };
   },
   created() {
@@ -56,6 +57,10 @@ export default {
         this.$cookie.set("nightMode", mode);
       }
       this.nightMode = mode;
+    },
+    handleLanguageChange(language, info) {
+      this.config = info.config;
+      this.languageKey++; // Force re-render of child components
     },
     scrollTo(ele) {
       if (ele == "home") {

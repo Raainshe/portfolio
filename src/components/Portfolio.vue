@@ -17,7 +17,7 @@
         <span
           class="title text-center"
           :class="{ pgray: !nightMode, 'text-light': nightMode }"
-          >portfolio.</span
+          >{{ translations.portfolio.title }}</span
         >
       </div>
       <hr
@@ -26,7 +26,7 @@
       />
 
       <vue-tabs :activeTextColor="!nightMode ? '#535A5E' : '#dfdfdf'">
-        <v-tab title="development">
+        <v-tab :title="translations.portfolio.development">
           <br />
           <div class="row">
             <div
@@ -51,7 +51,7 @@
           </div>
         </v-tab>
 
-        <v-tab title="personal projects/42 projects">
+        <v-tab :title="translations.portfolio.personal_projects">
           <div class="row">
             <div
               v-for="(design, idx) in desgin_info"
@@ -108,7 +108,7 @@
                   class="btn-sm btn btn-outline-secondary no-outline"
                   @click.prevent="showDesignModalFn(design)"
                 >
-                  read more
+                  {{ translations.portfolio.read_more }}
                 </button>
               </div>
             </div>
@@ -143,7 +143,7 @@ import Card from "./helpers/Card";
 import Modal from "./helpers/Modal";
 import DesignModal from "./helpers/DesignModal";
 import Carousel from "./helpers/Carousel";
-import info from "../../info";
+import languageService from "../services/languageService";
 
 import { VueTabs, VTab } from "vue-nav-tabs";
 import "vue-nav-tabs/themes/vue-tabs.css";
@@ -168,6 +168,7 @@ export default {
     },
   },
   data() {
+    const info = languageService.getInfo();
     return {
       all_info: info.portfolio,
       desgin_info: info.portfolio_design,
@@ -176,6 +177,7 @@ export default {
       showDesignModal: false,
       modal_info: {},
       design_modal_info: {},
+      translations: languageService.getTranslations(),
       data: [
         '<div class="example-slide">Slide 1</div>',
         '<div class="example-slide">Slide 2</div>',

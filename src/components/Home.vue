@@ -17,7 +17,7 @@
           <span
             class="home-title"
             :class="{ pgray: !nightMode, 'text-light': nightMode }"
-            >hello there!</span
+            >{{ translations.home.greeting }}</span
           >
           <div>
             <p v-html="description"></p>
@@ -59,7 +59,7 @@
 </template>
 
 <script>
-import info from "../../info";
+import languageService from "../services/languageService";
 
 import Wave from "./helpers/Wave";
 
@@ -74,13 +74,15 @@ export default {
     },
   },
   data() {
+    const info = languageService.getInfo();
     return {
       picture: info.flat_picture,
       description: info.description,
       name: info.name,
       linkedin: info.links.linkedin,
       github: info.links.github,
-      resume: info.links.resume
+      resume: info.links.resume,
+      translations: languageService.getTranslations()
     };
   },
   methods: {
@@ -184,7 +186,7 @@ img {
 }
 
 p {
-  text-align: justify;
+  text-align: left;
   font-weight: 400;
 }
 

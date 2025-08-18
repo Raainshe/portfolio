@@ -118,7 +118,7 @@ img {
   height: 110px;
   max-height: 130px;
   overflow: auto;
-  text-align: justify;
+  text-align: left;
 }
 
 div.img-div {

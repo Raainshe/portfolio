@@ -51,7 +51,7 @@
 </template>
 
 <script>
-import info from "../../info";
+import languageService from "../services/languageService";
 
 export default {
   name: "Recommendation",
@@ -61,6 +61,7 @@ export default {
     },
   },
   data() {
+    const info = languageService.getInfo();
     return {
       data: info.recommendations,
     };
@@ -82,7 +83,7 @@ export default {
   font-size: 18px;
   font-weight: 400;
   font-style: italic;
-  text-align: justify;
+  text-align: left;
 }
 
 .title3 {

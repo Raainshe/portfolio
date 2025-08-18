@@ -38,7 +38,7 @@
                 href="/about"
                 @click.prevent="$emit('scroll', 'about')"
                 :class="{ 'text-light': nightMode }"
-                >about</a
+                >{{ translations.navbar.about }}</a
               >
             </li>
             <li class="nav-item mx-2">
@@ -47,7 +47,7 @@
                 href="/skills"
                 @click.prevent="$emit('scroll', 'skills')"
                 :class="{ 'text-light': nightMode }"
-                >skills</a
+                >{{ translations.navbar.skills }}</a
               >
             </li>
             <li class="nav-item mx-2 ">
@@ -56,7 +56,7 @@
                 href="/portfolio"
                 @click.prevent="$emit('scroll', 'portfolio')"
                 :class="{ 'text-light': nightMode }"
-                >portfolio</a
+                >{{ translations.navbar.portfolio }}</a
               >
             </li>
             <li class="nav-item mx-2">
@@ -66,6 +66,32 @@
                 :class="{ 'text-light': nightMode }"
                 ><i class="fas fa-envelope"></i></a
               >
+            </li>
+            <li class="nav-item mx-2">
+              <div class="language-switcher">
+                <button
+                  class="btn btn-sm language-btn"
+                  :class="{ 
+                    'active': currentLanguage === 'en',
+                    'btn-outline-light': nightMode,
+                    'btn-outline-dark': !nightMode
+                  }"
+                  @click="setLanguage('en')"
+                >
+                  EN
+                </button>
+                <button
+                  class="btn btn-sm language-btn"
+                  :class="{ 
+                    'active': currentLanguage === 'de',
+                    'btn-outline-light': nightMode,
+                    'btn-outline-dark': !nightMode
+                  }"
+                  @click="setLanguage('de')"
+                >
+                  DE
+                </button>
+              </div>
             </li>
             <li class="nav-item ml-2">
               <a
@@ -91,7 +117,7 @@
 
 <script>
 import Logo from "./helpers/Logo";
-import info from "../../info";
+import languageService from "../services/languageService";
 
 export default {
   name: "Navbar",
@@ -102,17 +128,39 @@ export default {
   },
   data() {
     return {
-      navbarConfig: info.config.navbar,
+      navbarConfig: languageService.getInfo().config.navbar,
       localNightMode: this.nightMode,
+      currentLanguage: languageService.getCurrentLanguage(),
+      translations: languageService.getTranslations(),
     };
   },
   components: {
     Logo,
   },
+  created() {
+    // Subscribe to language changes
+    languageService.subscribe(this.onLanguageChange);
+    // Initialize language service
+    languageService.init();
+  },
+  beforeDestroy() {
+    // Unsubscribe when component is destroyed
+    languageService.unsubscribe(this.onLanguageChange);
+  },
   methods: {
     switchMode() {
       this.localNightMode = !this.localNightMode;
       this.$emit("nightMode", this.localNightMode);
+    },
+    setLanguage(language) {
+      languageService.setLanguage(language);
+    },
+    onLanguageChange(language, info) {
+      this.currentLanguage = language;
+      this.navbarConfig = info.config.navbar;
+      this.translations = languageService.getTranslations();
+      // Emit language change to parent components
+      this.$emit("languageChange", language, info);
     },
   },
 };
@@ -141,5 +189,30 @@ nav {
 .navbar-blur {
   background-color: #ffffff7e;
   backdrop-filter: blur(12px);
+}
+
+.language-switcher {
+  display: flex;
+  gap: 2px;
+}
+
+.language-btn {
+  font-size: 12px;
+  padding: 4px 8px;
+  font-weight: 600;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.language-btn.active {
+  background-color: #669db3ff !important;
+  border-color: #669db3ff !important;
+  color: white !important;
+}
+
+.language-btn:hover {
+  background-color: #669db3ff !important;
+  border-color: #669db3ff !important;
+  color: white !important;
 }
 </style>

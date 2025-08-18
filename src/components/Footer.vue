@@ -43,11 +43,12 @@
 </template>
 
 <script>
-import info from "../../info";
+import languageService from "../services/languageService";
 
 export default {
   name: "Footer",
   data() {
+    const info = languageService.getInfo();
     return {
       linkedin: info.links.linkedin,
       github: info.links.github,

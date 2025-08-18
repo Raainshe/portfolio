@@ -17,7 +17,7 @@
         <span
           class="title text-center"
           :class="{ pgray: !nightMode, 'text-light': nightMode }"
-          >about me.</span
+          >{{ translations.about.title }}</span
         >
       </div>
       <hr
@@ -91,7 +91,7 @@
 
 <script>
 import Timeline from "./helpers/Timeline";
-import info from "../../info";
+import languageService from "../services/languageService";
 
 export default {
   name: "About",
@@ -104,16 +104,19 @@ export default {
     },
   },
   data() {
+    const info = languageService.getInfo();
+    const translations = languageService.getTranslations();
     return {
       education: {
-        title: "education",
+        title: translations.about.education,
         data: info.education,
       },
       experience: {
-        title: "experiences",
+        title: translations.about.experiences,
         data: info.experience,
       },
       languages: info.languages,
+      translations: translations,
     };
   },
 };

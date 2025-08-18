@@ -10,7 +10,7 @@
         <span
           class="title text-center"
           :class="{ pgray: !nightMode, 'text-light': nightMode }"
-          >skills.</span
+          >{{ translations.skills.title }}</span
         >
       </div>
       <hr
@@ -46,7 +46,7 @@
 </template>
 
 <script>
-import info from "../../info";
+import languageService from "../services/languageService";
 
 export default {
   name: "Skills",
@@ -56,8 +56,10 @@ export default {
     },
   },
   data() {
+    const info = languageService.getInfo();
     return {
       skills: info.skills,
+      translations: languageService.getTranslations(),
     };
   },
 };

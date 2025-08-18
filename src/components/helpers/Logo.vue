@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import info from "../../../info";
+import languageService from "../../services/languageService";
 
 export default {
   name: "Logo",
@@ -20,6 +20,7 @@ export default {
     },
   },
   data() {
+    const info = languageService.getInfo();
     return {
       name: info.logo_name,
       dot: ".",

@@ -161,7 +161,7 @@ jobs:
             echo "✅ Sufficient disk space available"
           fi
           
-    - name: Deploy to server
+    - name: Create deployment directory
       if: success()
       uses: appleboy/ssh-action@v1.0.3
       with:
@@ -170,18 +170,9 @@ jobs:
         key: ${{ secrets.SSH_KEY }}
         port: ${{ secrets.PORT }}
         script: |
-          echo "Starting deployment process..."
-          
-          # Stop nginx temporarily
-          echo "Stopping nginx..."
-          systemctl stop nginx || echo "Nginx was not running"
-          
-          # Remove old files
-          echo "Removing old files..."
-          rm -rf /var/www/html/*
+          echo "Creating deployment directory..."
           
           # Create a temporary directory for the new files
-          echo "Creating temporary directory..."
           sudo mkdir -p /tmp/vue-deploy
           sudo chown ${{ secrets.USERNAME }}:${{ secrets.USERNAME }} /tmp/vue-deploy
           sudo chmod 755 /tmp/vue-deploy
@@ -189,7 +180,7 @@ jobs:
           echo "Verifying temporary directory..."
           ls -la /tmp/vue-deploy
           
-          echo "Server preparation completed."
+          echo "Deployment directory ready."
           
     - name: Debug server directory
       if: success()
@@ -238,6 +229,27 @@ jobs:
         
         echo "Upload completed. Cleaning up SSH key..."
         rm -f /tmp/deploy_key
+        
+    - name: Stop services and prepare for deployment
+      if: success()
+      uses: appleboy/ssh-action@v1.0.3
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.SSH_KEY }}
+        port: ${{ secrets.PORT }}
+        script: |
+          echo "Preparing server for deployment..."
+          
+          # Stop nginx temporarily
+          echo "Stopping nginx..."
+          systemctl stop nginx || echo "Nginx was not running"
+          
+          # Remove old files
+          echo "Removing old files..."
+          rm -rf /var/www/html/*
+          
+          echo "Server ready for file deployment."
         
     - name: Finalize deployment
       if: success()

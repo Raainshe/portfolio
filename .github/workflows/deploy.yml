@@ -171,16 +171,47 @@ jobs:
         port: ${{ secrets.PORT }}
         script: |
           echo "Creating deployment directory..."
+          echo "Current user: $(whoami)"
+          echo "Current directory: $(pwd)"
           
-          # Create a temporary directory for the new files
-          sudo mkdir -p /tmp/vue-deploy
-          sudo chown ${{ secrets.USERNAME }}:${{ secrets.USERNAME }} /tmp/vue-deploy
-          sudo chmod 755 /tmp/vue-deploy
+          # Try creating directory without sudo first
+          mkdir -p /tmp/vue-deploy || {
+            echo "Regular mkdir failed, trying with sudo..."
+            sudo mkdir -p /tmp/vue-deploy
+          }
+          
+          # Set ownership and permissions
+          if [ -d "/tmp/vue-deploy" ]; then
+            echo "Directory exists, setting permissions..."
+            sudo chown ${{ secrets.USERNAME }}:${{ secrets.USERNAME }} /tmp/vue-deploy 2>/dev/null || chown ${{ secrets.USERNAME }}:${{ secrets.USERNAME }} /tmp/vue-deploy
+            sudo chmod 755 /tmp/vue-deploy 2>/dev/null || chmod 755 /tmp/vue-deploy
+          else
+            echo "❌ Failed to create directory"
+            exit 1
+          fi
           
           echo "Verifying temporary directory..."
-          ls -la /tmp/vue-deploy
+          ls -la /tmp/ | grep vue-deploy || echo "Directory not visible in listing"
+          ls -la /tmp/vue-deploy/ || echo "Cannot access directory contents"
           
-          echo "Deployment directory ready."
+          # Test write permissions
+          if touch /tmp/vue-deploy/test-file.txt 2>/dev/null && rm /tmp/vue-deploy/test-file.txt 2>/dev/null; then
+            echo "✅ Directory is writable"
+          else
+            echo "❌ Directory is not writable, trying alternative location..."
+            # Try user's home directory as fallback
+            mkdir -p ~/vue-deploy
+            chmod 755 ~/vue-deploy
+            if touch ~/vue-deploy/test-file.txt && rm ~/vue-deploy/test-file.txt; then
+              echo "✅ Using ~/vue-deploy as deployment directory"
+              echo "DEPLOY_DIR=~/vue-deploy" >> $GITHUB_ENV
+            else
+              echo "❌ All directory creation attempts failed"
+              exit 1
+            fi
+          fi
+          
+          echo "Deployment directory setup completed."
           
     - name: Debug server directory
       if: success()
@@ -219,6 +250,11 @@ jobs:
         echo "Setting up SSH key for rsync..."
         echo "${{ secrets.SSH_KEY }}" > /tmp/deploy_key
         chmod 600 /tmp/deploy_key
+        
+        echo "Creating deployment directory on server..."
+        ssh -i /tmp/deploy_key -o StrictHostKeyChecking=no -p ${{ secrets.PORT }} \
+          ${{ secrets.USERNAME }}@${{ secrets.HOST }} \
+          "mkdir -p /tmp/vue-deploy && chmod 755 /tmp/vue-deploy"
         
         echo "Starting rsync upload..."
         rsync -avz -e "ssh -i /tmp/deploy_key -o StrictHostKeyChecking=no -p ${{ secrets.PORT }}" \

@@ -143,14 +143,33 @@ jobs:
           
           # Create a temporary directory for the new files
           echo "Creating temporary directory..."
-          mkdir -p /tmp/vue-deploy
-          chown ${{ secrets.USERNAME }}:${{ secrets.USERNAME }} /tmp/vue-deploy
-          chmod 755 /tmp/vue-deploy
+          sudo mkdir -p /tmp/vue-deploy
+          sudo chown ${{ secrets.USERNAME }}:${{ secrets.USERNAME }} /tmp/vue-deploy
+          sudo chmod 755 /tmp/vue-deploy
           
           echo "Verifying temporary directory..."
           ls -la /tmp/vue-deploy
           
           echo "Server preparation completed."
+          
+    - name: Debug server directory
+      if: success()
+      uses: appleboy/ssh-action@v1.0.3
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.SSH_KEY }}
+        port: ${{ secrets.PORT }}
+        script: |
+          echo "Debugging server directory permissions..."
+          echo "Current user: $(whoami)"
+          echo "User groups: $(groups)"
+          echo "Checking /tmp permissions:"
+          ls -la /tmp | grep vue-deploy
+          echo "Checking /tmp/vue-deploy permissions:"
+          ls -la /tmp/vue-deploy/
+          echo "Testing write permissions:"
+          touch /tmp/vue-deploy/test-write.txt && rm /tmp/vue-deploy/test-write.txt && echo "✅ Write permissions OK" || echo "❌ Write permissions FAILED"
           
     - name: Upload files
       if: success()
@@ -160,7 +179,7 @@ jobs:
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.SSH_KEY }}
         port: ${{ secrets.PORT }}
-        source: "dist/*"
+        source: "dist"
         target: "/tmp/vue-deploy/"
         timeout: "300s"
         command_timeout: "300s"
@@ -180,11 +199,13 @@ jobs:
           # Remove old files
           rm -rf /var/www/html/*
           
-          # If a dist directory exists in the upload, move its contents up
+          # Since we're copying the entire dist directory, move its contents
           if [ -d /tmp/vue-deploy/dist ]; then
+            echo "Moving files from /tmp/vue-deploy/dist/ to /var/www/html/"
             mv /tmp/vue-deploy/dist/* /var/www/html/
             rm -rf /tmp/vue-deploy/dist
           else
+            echo "No dist directory found, moving all files from /tmp/vue-deploy/"
             mv /tmp/vue-deploy/* /var/www/html/
           fi
           

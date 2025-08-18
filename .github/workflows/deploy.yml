@@ -122,6 +122,45 @@ jobs:
         # Clean up
         rm -f /tmp/deploy_key
       
+    - name: Clean deployment directory and free up space
+      if: success()
+      uses: appleboy/ssh-action@v1.0.3
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.SSH_KEY }}
+        port: ${{ secrets.PORT }}
+        script: |
+          echo "Cleaning up old deployment files and checking disk space..."
+          
+          # Show disk space before cleanup
+          echo "Disk space before cleanup:"
+          df -h /tmp
+          
+          # Clean old deployment files
+          echo "Removing old deployment files..."
+          rm -rf /tmp/vue-deploy/*
+          rm -rf /tmp/vue-deploy/.*
+          
+          # Clean other temporary files if needed
+          echo "Cleaning general /tmp directory..."
+          find /tmp -type f -mtime +7 -delete 2>/dev/null || true
+          find /tmp -type d -empty -delete 2>/dev/null || true
+          
+          # Show disk space after cleanup
+          echo "Disk space after cleanup:"
+          df -h /tmp
+          
+          # Check if we have enough space (at least 1GB free)
+          AVAILABLE=$(df /tmp | tail -1 | awk '{print $4}')
+          echo "Available space in /tmp: ${AVAILABLE}K"
+          if [ "$AVAILABLE" -lt 1048576 ]; then
+            echo "⚠️ Warning: Less than 1GB free space in /tmp"
+            echo "Available space: $(($AVAILABLE / 1024))MB"
+          else
+            echo "✅ Sufficient disk space available"
+          fi
+          
     - name: Deploy to server
       if: success()
       uses: appleboy/ssh-action@v1.0.3
@@ -251,8 +290,12 @@ jobs:
             echo "⚠️  HTTPS may not be working"
           fi
           
-          # Clean up
-          echo "Cleaning up temporary files..."
+          # Clean up deployment files
+          echo "Cleaning up temporary deployment files..."
           rm -rf /tmp/vue-deploy
+          
+          # Final disk space check
+          echo "Final disk space check:"
+          df -h /tmp
           
           echo "🎉 Deployment completed successfully!" 

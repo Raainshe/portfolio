@@ -2,7 +2,7 @@ name: Deploy to Digital Ocean
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, languages ]
 
 jobs:
   deploy:
@@ -22,7 +22,19 @@ jobs:
       run: npm ci
       
     - name: Build project
-      run: npm run build
+      run: |
+        echo "Starting build process..."
+        npm run build
+        echo "Build completed. Checking dist directory..."
+        ls -la
+        if [ -d "dist" ]; then
+          echo "✅ dist directory exists"
+          ls -la dist/
+          echo "Total files in dist: $(find dist -type f | wc -l)"
+        else
+          echo "❌ dist directory does not exist!"
+          exit 1
+        fi
       
     - name: Debug - Check secrets availability
       run: |
@@ -132,6 +144,11 @@ jobs:
           # Create a temporary directory for the new files
           echo "Creating temporary directory..."
           mkdir -p /tmp/vue-deploy
+          chown ${{ secrets.USERNAME }}:${{ secrets.USERNAME }} /tmp/vue-deploy
+          chmod 755 /tmp/vue-deploy
+          
+          echo "Verifying temporary directory..."
+          ls -la /tmp/vue-deploy
           
           echo "Server preparation completed."
           
@@ -147,6 +164,7 @@ jobs:
         target: "/tmp/vue-deploy/"
         timeout: "300s"
         command_timeout: "300s"
+        debug: true
         
     - name: Finalize deployment
       if: success()

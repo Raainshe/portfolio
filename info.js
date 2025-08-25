@@ -119,6 +119,7 @@ let info = {
     {
       title: "programming languages",
       info: [
+        "Go",
         "JavaScript",
         "TypeScript",
         "C#",
@@ -332,6 +333,26 @@ let info = {
       collaboration: "Solo",
       description:
         "A comprehensive Discord bot that allows users to interact with qBittorrent through Discord slash commands. Features include listing torrents, adding magnet links with category-based save paths, displaying download progress, deleting torrents, showing disk space usage with pie charts, and automatic seeding time management.<br/><br/>The bot includes intelligent seeding management that automatically stops torrents after 10x their download duration, helping maintain good seeding ratios while preventing indefinite seeding. Built with TypeScript and Discord.js, it provides a user-friendly interface for managing torrent downloads remotely through Discord commands."
+    },
+    {
+      name: "Pokédex CLI",
+      title: "Interactive Command-Line Pokédex",
+      pictures: [
+        {
+          img: require("./src/assets/pokecli1.png")
+        },
+        {
+          img: require("./src/assets/pokecli2.png")
+        }
+      ],
+      technologies: ["Go", "HTTP Clients", "JSON", "API Integration", "REPL", "Caching", "Concurrency", "Testing"],
+      category: "CLI Application",
+      github: "https://github.com/Raainshe/pokedexcli",
+      date: "2025",
+      visit: "",
+      collaboration: "Solo",
+      description:
+        "An interactive command-line Pokédex application built in Go that allows users to explore the Pokémon world, catch Pokémon, and manage their collection. This project demonstrates comprehensive Go programming concepts including HTTP client usage, JSON handling, and API integration with the PokéAPI.<br/><br/>Key features include map exploration with navigation commands, Pokémon discovery in different areas, catch mechanics with success rates based on base experience, and a personal Pokédex for storing caught Pokémon. The application implements a sophisticated caching system with automatic cleanup using goroutines and mutex locks for thread-safe operations, significantly improving performance by reducing redundant API calls.<br/><br/>Built as part of the Boot.dev Go learning curriculum, this project showcases advanced Go concepts such as concurrency with goroutines, HTTP response caching, command pattern implementation, REPL (Read-Eval-Print Loop) architecture, and comprehensive unit testing. The application features an intelligent catch system where success rates vary based on Pokémon difficulty, making the experience both challenging and engaging."
     },
     {
       name: "cub3d",

@@ -119,6 +119,7 @@ let info = {
     {
       title: "programmiersprachen",
       info: [
+        "Go",
         "JavaScript",
         "TypeScript",
         "C#",
@@ -331,6 +332,26 @@ let info = {
       collaboration: "Solo",
       description:
         "Ein umfassender Discord-Bot für die Interaktion mit qBittorrent über Discord-Slash-Befehle. Funktionen umfassen das Verwalten von Torrents, Download-Fortschritt anzeigen und automatisches Seeding-Management.<br/><br/>Der Bot stoppt Torrents automatisch nach dem 10-fachen ihrer Download-Dauer und bietet eine benutzerfreundliche Oberfläche für die Remote-Verwaltung. Erstellt mit TypeScript und Discord.js."
+    },
+    {
+      name: "Pokédex CLI",
+      title: "Interaktives Kommandozeilen-Pokédex",
+      pictures: [
+        {
+          img: require("./src/assets/pokecli1.png")
+        },
+        {
+          img: require("./src/assets/pokecli2.png")
+        }
+      ],
+      technologies: ["Go", "HTTP Clients", "JSON", "API Integration", "REPL", "Caching", "Concurrency", "Testing"],
+      category: "CLI-Anwendung",
+      github: "https://github.com/Raainshe/pokedexcli",
+      date: "2025",
+      visit: "",
+      collaboration: "Solo",
+      description:
+        "Eine interaktive Kommandozeilen-Pokédex-Anwendung in Go, die es Benutzern ermöglicht, die Pokémon-Welt zu erkunden, Pokémon zu fangen und ihre Sammlung zu verwalten. Dieses Projekt demonstriert umfassende Go-Programmierkonzepte einschließlich HTTP-Client-Nutzung, JSON-Behandlung und API-Integration mit der PokéAPI.<br/><br/>Hauptfunktionen umfassen Kartenerkundung mit Navigationsbefehlen, Pokémon-Entdeckung in verschiedenen Gebieten, Fangmechanik mit Erfolgsraten basierend auf Basiserfahrung und ein persönliches Pokédex zur Speicherung gefangener Pokémon. Die Anwendung implementiert ein ausgeklügeltes Caching-System mit automatischer Bereinigung unter Verwendung von Goroutinen und Mutex-Sperren für thread-sichere Operationen, was die Leistung durch Reduzierung redundanter API-Aufrufe erheblich verbessert.<br/><br/>Erstellt als Teil des Boot.dev Go-Lernlehrplans, zeigt dieses Projekt fortgeschrittene Go-Konzepte wie Nebenläufigkeit mit Goroutinen, HTTP-Response-Caching, Command-Pattern-Implementierung, REPL-Architektur (Read-Eval-Print Loop) und umfassende Unit-Tests. Die Anwendung verfügt über ein intelligentes Fangsystem, bei dem die Erfolgsraten je nach Pokémon-Schwierigkeit variieren, was die Erfahrung sowohl herausfordernd als auch fesselnd macht."
     },
     {
       name: "cub3d",

@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"log"
 	"net/http"
+	"strings"
 
 	"fmt"
 	"time"
@@ -24,9 +25,67 @@ func (s *Server) RegisterRoutes() http.Handler {
 	// User routes with path parameters
 	router.HandleFunc("/api/users/signup", s.userSignupHandler).Methods("POST")
 	router.HandleFunc("/api/users/{id}", s.getUserHandler).Methods("GET") // This supports {id}
+	router.HandleFunc("/api/visitors", s.trackVisitorHandler).Methods("POST")
 
 	// Wrap the router with CORS middleware
 	return s.corsMiddleware(router)
+}
+
+func (s *Server) trackVisitorHandler(w http.ResponseWriter, r *http.Request) {
+
+	ip := getClientIP(r)
+	userAgent := r.UserAgent()
+
+	//track the visit
+	visitor, err := s.db.TrackVisitor(ip, userAgent)
+	if err != nil {
+		log.Printf("Failed to track visitor: %v", err)
+		http.Error(w, "Failed to track visitor", http.StatusInternalServerError)
+	}
+
+	res := map[string]interface{}{
+		"success":  true,
+		"message":  "Visit tracked successfully",
+		"location": visitor.Location,
+	}
+
+	w.Header().Set("Contet-Type", "application/json")
+	if err := json.NewEncoder(w).Encode(res); err != nil {
+		log.Printf("Failed to encode response: %v", err)
+		http.Error(w, "Internal server error", http.StatusInternalServerError)
+	}
+}
+
+func getClientIP(r *http.Request) string {
+	headers := []string{
+		"X-Forwarded-For",
+		"X-Real-IP",
+		"X-Client-IP",
+		"CF-Connecting-IP",
+	}
+
+	for _, header := range headers {
+		if ip := r.Header.Get(header); ip != "" {
+			//X forward for can contain multiple ips
+			if strings.Contains(ip, ",") {
+				ip = strings.Split(ip, ",")[0]
+			}
+			ip = strings.TrimSpace(ip)
+			if ip != "" {
+				return ip
+			}
+		}
+	}
+
+	//fallback to remote address
+	if r.RemoteAddr != "" {
+		if strings.Contains(r.RemoteAddr, ":") {
+			return strings.Split(r.RemoteAddr, ":")[0]
+		}
+		return r.RemoteAddr
+	}
+
+	return "unknown"
 }
 
 func (s *Server) getUserHandler(w http.ResponseWriter, r *http.Request) {

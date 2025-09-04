@@ -44,6 +44,9 @@ export default {
     }
   },
   mounted() {
+    //track the visitor
+    this.trackVisitor()
+    //scroll to the appropriate section
     ["about", "skills", "portfolio"].forEach((l) => {
       if (window.location.href.includes(l)) {
         var elementPosition = document.getElementById(l).offsetTop;
@@ -52,6 +55,26 @@ export default {
     });
   },
   methods: {
+    async trackVisitor() {
+      try {
+        const response = await fetch('http://localhost:8080/api/visitors',{
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            }
+          })
+        if (!response.ok) {
+          const data = await response.json()
+          console.error('Failed to track visitor', data)
+
+        } else {
+          const data = await response.json()
+          console.log('Visitor tracked successfully', response.status)
+        }
+      } catch (error) {
+        console.error('Error tracking visitor:', error)
+      }
+    },
     switchMode(mode) {
       if (this.config.use_cookies) {
         this.$cookie.set("nightMode", mode);

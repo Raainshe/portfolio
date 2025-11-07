@@ -204,6 +204,39 @@ let info = {
   ],
   portfolio: [
     {
+      name: "Doctor's Workspace - BLOODSA",
+      pictures: [
+        {
+          img: require("./src/assets/docwork1.png")
+        },
+        {
+          img: require("./src/assets/docwork2.png")
+        },
+        {
+          img: require("./src/assets/docwork3.png")
+        },
+        {
+          img: require("./src/assets/docwork4.png")
+        },
+        {
+          img: require("./src/assets/docwork5.png")
+        },
+        {
+          img: require("./src/assets/docwork6.png")
+        },
+        {
+          img: require("./src/assets/docwork7.png")
+        }
+      ],
+      technologies: ["Go", "Gin", "Vue.js 3", "TypeScript", "MongoDB", "Pinia", "Vue Router", "Docker", "Docker Compose", "Dropbox API", "REDCap", "Nginx", "Vite", "Tailwind CSS", "JWT", "bcrypt", "GitHub Actions", "GitHub Container Registry"],
+      category: "Full Stack Application",
+      date: "2025",
+      github: "https://github.com/Tiny-Optics/doctors_workspaceBSA",
+      visit: "https://workspace.bloodsa.org.za/",
+      collaboration: "Solo",
+      description: "A secure, custom-built web platform for haematologists, physicians, and data capturers to access Standard Operating Procedures (SOPs), manage transplant referrals, and interact with the African HOPeR Registry. Built with Go 1.24.4 backend using the Gin framework and Vue.js 3.5 frontend with TypeScript, Vite, and Tailwind CSS.<br/><br/>The platform features robust authentication with JWT tokens (24-hour expiry with 30-day refresh tokens), role-based access control with four user roles (Haematologist, Physician, Data Capturer, Admin) and two admin levels (User Manager, Super Admin). Security includes bcrypt password hashing (cost factor 12), account locking after 5 failed login attempts (30-minute lockout), comprehensive audit logging, and automatic token expiration handling with auto-logout.<br/><br/>Key features include a comprehensive SOP library categorized by Anemia, Lymphoma, Myeloma, and General Business with PDF viewer and download functionality. Documents are securely stored on Dropbox with OAuth integration and automatic token refresh. The system includes one-click referral integration with REDCap for transplant cases, automated email notifications via SMTP to pre-defined specialists, and a structured registry management system for the African HOPeR Registry with dynamic form builder, submission tracking, ethics approval upload functionality, and training video integration.<br/><br/>The admin panel provides comprehensive user management with institution assignment, role-based permissions, audit log viewing, system settings configuration, SOP category management, referral settings, and registry form configuration. Additional features include password reset functionality, cookie consent banner with localStorage preference storage, Privacy Policy and Terms of Service pages compliant with POPIA (Protection of Personal Information Act), smooth scroll-to-top navigation, and responsive design optimized for healthcare professionals.<br/><br/>The application is fully containerized with Docker using multi-stage builds for optimized production images. Backend uses Alpine Linux with minimal footprint, while frontend is built with Vite and served via Nginx. Docker Compose configurations support development (with hot-reloading via Air for Go and Vite for Vue), production, and Cloudways shared hosting environments. The Cloudways deployment is optimized for shared servers with isolated Docker networks, custom port mapping, resource limits, and health checks to prevent conflicts with other applications on the same server.<br/><br/>Deployment is automated via GitHub Actions which builds Docker images on GitHub servers and pushes them to GitHub Container Registry (GHCR), eliminating the need for building on the production server. The VPS automatically pulls pre-built images and deploys them, reducing deployment time from potential crashes to ~2-3 minutes. The application runs on Cloudways shared hosting with Nginx reverse proxy configuration, SSL/TLS encryption via Let's Encrypt, and persistent volumes for MongoDB data and file uploads.<br/><br/>Technical implementations include MongoDB for data persistence with TTL indexes for session cleanup, Pinia for state management, centralized API service with 401 response interception, Docker containerization with health checks and restart policies, Nginx reverse proxy with custom configuration, and integration with third-party services including REDCap, Dropbox OAuth with automatic token refresh, and SMTP email services. The application follows RESTful API architecture with comprehensive error handling and validation."
+    },
+    {
       name: "SBJ Application Form",
       pictures: [
         {
@@ -311,6 +344,7 @@ let info = {
       description:
         "A full-featured e-commerce website for Digikraal developed with WordPress and WooCommerce. I was primarily responsible for the frontend development, creating responsive layouts, custom styling, and implementing user interface components. I collaborated closely with my partner on the database work using MongoDB, designing data structures and implementing database queries. Additionally, I contributed to the backend development by writing several backend functions that are called from the frontend, ensuring seamless integration between the user interface and server-side logic.<br/><br/>The project features comprehensive product management, user authentication, payment integration, and mobile-responsive design for an optimal shopping experience. My role involved both frontend and backend development, demonstrating full-stack capabilities while working effectively in a collaborative team environment."
     },
+    
     
   ],
   portfolio_design: [

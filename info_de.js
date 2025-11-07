@@ -204,6 +204,39 @@ let info = {
   ],
   portfolio: [
     {
+      name: "Doctor's Workspace - BLOODSA",
+      pictures: [
+        {
+          img: require("./src/assets/docwork1.png")
+        },
+        {
+          img: require("./src/assets/docwork2.png")
+        },
+        {
+          img: require("./src/assets/docwork3.png")
+        },
+        {
+          img: require("./src/assets/docwork4.png")
+        },
+        {
+          img: require("./src/assets/docwork5.png")
+        },
+        {
+          img: require("./src/assets/docwork6.png")
+        },
+        {
+          img: require("./src/assets/docwork7.png")
+        }
+      ],
+      technologies: ["Go", "Gin", "Vue.js 3", "TypeScript", "MongoDB", "Pinia", "Vue Router", "Docker", "Docker Compose", "Dropbox API", "REDCap", "Nginx", "Vite", "Tailwind CSS", "JWT", "bcrypt", "GitHub Actions", "GitHub Container Registry"],
+      category: "Full Stack Application",
+      date: "2025",
+      github: "https://github.com/Tiny-Optics/doctors_workspaceBSA",
+      visit: "https://workspace.bloodsa.org.za/",
+      collaboration: "Solo",
+      description: "Eine sichere, maßgeschneiderte Webplattform für Hämatologen, Ärzte und Datenerfasser, um auf Standardbetriebsverfahren (SOPs) zuzugreifen, Transplantationsüberweisungen zu verwalten und mit dem African HOPeR Registry zu interagieren. Entwickelt mit Go 1.24.4 Backend unter Verwendung des Gin-Frameworks und Vue.js 3.5 Frontend mit TypeScript, Vite und Tailwind CSS.<br/><br/>Die Plattform bietet robuste Authentifizierung mit JWT-Tokens (24-Stunden-Ablauf mit 30-Tage-Refresh-Tokens), rollenbasierte Zugriffskontrolle mit vier Benutzerrollen (Hämatologe, Arzt, Datenerfasser, Admin) und zwei Admin-Ebenen (User Manager, Super Admin). Die Sicherheit umfasst bcrypt-Passwort-Hashing (Kostenfaktor 12), Kontosperrung nach 5 fehlgeschlagenen Anmeldeversuchen (30-Minuten-Sperre), umfassende Audit-Protokollierung und automatische Token-Ablaufbehandlung mit automatischer Abmeldung.<br/><br/>Zu den Hauptfunktionen gehört eine umfassende SOP-Bibliothek, kategorisiert nach Anämie, Lymphom, Myelom und Allgemeine Geschäftsprozesse mit PDF-Viewer und Download-Funktionalität. Dokumente werden sicher auf Dropbox gespeichert mit OAuth-Integration und automatischer Token-Aktualisierung. Das System umfasst eine Ein-Klick-Überweisungsintegration mit REDCap für Transplantationsfälle, automatisierte E-Mail-Benachrichtigungen über SMTP an vordefinierte Spezialisten und ein strukturiertes Registry-Managementsystem für das African HOPeR Registry mit dynamischem Formular-Builder, Einreichungsverfolgung, Ethikgenehmigungs-Upload-Funktionalität und Trainingsvideo-Integration.<br/><br/>Das Admin-Panel bietet umfassendes Benutzer-Management mit Institutionenzuweisung, rollenbasierte Berechtigungen, Audit-Log-Anzeige, Systemeinstellungen-Konfiguration, SOP-Kategorie-Management, Überweisungseinstellungen und Registry-Formular-Konfiguration. Zusätzliche Funktionen umfassen Passwort-Reset-Funktionalität, Cookie-Einwilligungsbanner mit localStorage-Präferenzspeicherung, Datenschutzrichtlinie und Nutzungsbedingungen-Seiten, die mit POPIA (Protection of Personal Information Act) konform sind, sanftes Scrollen nach oben bei Navigation und responsives Design, optimiert für medizinische Fachkräfte.<br/><br/>Die Anwendung ist vollständig mit Docker containerisiert und verwendet Multi-Stage-Builds für optimierte Produktions-Images. Das Backend verwendet Alpine Linux mit minimalem Footprint, während das Frontend mit Vite erstellt und über Nginx bereitgestellt wird. Docker Compose-Konfigurationen unterstützen Entwicklungsumgebungen (mit Hot-Reloading über Air für Go und Vite für Vue), Produktion und Cloudways Shared Hosting-Umgebungen. Das Cloudways-Deployment ist für Shared-Server optimiert mit isolierten Docker-Netzwerken, benutzerdefiniertem Port-Mapping, Ressourcenlimits und Health-Checks, um Konflikte mit anderen Anwendungen auf demselben Server zu vermeiden.<br/><br/>Das Deployment wird automatisch über GitHub Actions durchgeführt, die Docker-Images auf GitHub-Servern erstellt und sie in die GitHub Container Registry (GHCR) pusht, wodurch die Notwendigkeit des Builds auf dem Produktionsserver entfällt. Der VPS zieht automatisch vorgefertigte Images und stellt sie bereit, wodurch die Deployment-Zeit von möglichen Abstürzen auf ~2-3 Minuten reduziert wird. Die Anwendung läuft auf Cloudways Shared Hosting mit Nginx Reverse-Proxy-Konfiguration, SSL/TLS-Verschlüsselung über Let's Encrypt und persistenten Volumes für MongoDB-Daten und Datei-Uploads.<br/><br/>Technische Implementierungen umfassen MongoDB für Datenpersistenz mit TTL-Indexen für Session-Bereinigung, Pinia für State Management, zentralisierter API-Service mit 401-Response-Interception, Docker-Containerisierung mit Health-Checks und Restart-Richtlinien, Nginx Reverse-Proxy mit benutzerdefinierter Konfiguration und Integration mit Drittanbieterdiensten einschließlich REDCap, Dropbox OAuth mit automatischer Token-Aktualisierung und SMTP-E-Mail-Diensten. Die Anwendung folgt einer RESTful-API-Architektur mit umfassender Fehlerbehandlung und Validierung."
+    },
+    {
       name: "SBJ Antragsformular",
       pictures: [
         {

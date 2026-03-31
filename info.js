@@ -34,6 +34,26 @@ let info = {
       ]
     },
     {
+      name: "Arkadia Heilbronn gGmbH",
+      place: "Heilbronn, Germany",
+      date: "Jan - Feb, 2026",
+      degree: "LEVEL3 – Build a Cloud",
+      gpa: "Certificate of Completion",
+      description:
+        "Intensive six-week on-site coding track created with industry experts. Advanced learners work through daily collaboration, weekly reviews, and a final presentation in a professional setting. Build a Cloud covers engineering an end-to-end cloud-native platform from raw infrastructure through Kubernetes to a production-grade PaaS with APIs, UI, observability, and audit logging.",
+      skills: [
+        "OpenStack",
+        "Terraform",
+        "Kubernetes",
+        "STACKIT Kubernetes Engine",
+        "Prometheus",
+        "Grafana",
+        "Loki",
+        "Cloud Native",
+        "PaaS"
+      ]
+    },
+    {
       name: "Richfield Graduate Institute of Technology",
       place: "South Africa",
       date: "2017 - 2020",
@@ -203,6 +223,25 @@ let info = {
     }
   ],
   portfolio: [
+    {
+      name: "IKS Africa",
+      pictures: [
+        {
+          img: require("./src/assets/iksafrica.png")
+        },
+        {
+          img: require("./src/assets/iksafrica2.png")
+        }
+      ],
+      technologies: ["Vue.js", "Go", "Docker", "CI/CD", "Figma"],
+      category: "Landing Page",
+      date: "2026",
+      github: "https://github.com/Tiny-Optics/IKS",
+      visit: "https://iksafrica.com",
+      collaboration: "Team",
+      description:
+        "A marketing landing page for IKS Africa. I implemented the full stack: Vue.js frontend, Go API, Dockerized services, and a CI/CD pipeline for reliable deployments. The interface was designed by the team and aligned with the design system using a Figma MCP–assisted workflow.<br/><br/>Team project: I owned development across the site end to end while collaborating with designers on visuals and UX."
+    },
     {
       name: "Doctor's Workspace - BLOODSA",
       pictures: [

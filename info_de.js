@@ -34,6 +34,26 @@ let info = {
       ]
     },
     {
+      name: "Arkadia Heilbronn gGmbH",
+      place: "Heilbronn, Deutschland",
+      date: "Jan - Feb, 2026",
+      degree: "LEVEL3 – Build a Cloud",
+      gpa: "Abschlusszertifikat",
+      description:
+        "Intensiver sechswöchiger Präsenz-Coding-Track, entwickelt mit Branchenexpert:innen. Fortgeschrittene arbeiten täglich zusammen, mit wöchentlichen Reviews und einer Abschlusspräsentation in professioneller Umgebung. «Build a Cloud» umfasst den Aufbau einer durchgängigen Cloud-nativen Plattform von der Infrastruktur über Kubernetes bis zu einem produktionsreifen PaaS mit APIs, UI, Observability und Audit-Logging.",
+      skills: [
+        "OpenStack",
+        "Terraform",
+        "Kubernetes",
+        "STACKIT Kubernetes Engine",
+        "Prometheus",
+        "Grafana",
+        "Loki",
+        "Cloud Native",
+        "PaaS"
+      ]
+    },
+    {
       name: "Richfield Graduate Institute of Technology",
       place: "Südafrika",
       date: "2017 - 2020",
@@ -203,6 +223,25 @@ let info = {
     }
   ],
   portfolio: [
+    {
+      name: "IKS Africa",
+      pictures: [
+        {
+          img: require("./src/assets/iksafrica.png")
+        },
+        {
+          img: require("./src/assets/iksafrica2.png")
+        }
+      ],
+      technologies: ["Vue.js", "Go", "Docker", "CI/CD", "Figma"],
+      category: "Landing Page",
+      date: "2026",
+      github: "https://github.com/Tiny-Optics/IKS",
+      visit: "https://iksafrica.com",
+      collaboration: "Team",
+      description:
+        "Eine Marketing-Landingpage für IKS Africa. Ich habe den gesamten Stack umgesetzt: Vue.js-Frontend, Go-API, Docker-basierte Services und eine CI/CD-Pipeline für zuverlässige Deployments. Die Oberfläche wurde vom Team gestaltet und mit einem Figma-MCP-gestützten Workflow an das Designsystem angeglichen.<br/><br/>Teamprojekt: Ich war für die Entwicklung der kompletten Website verantwortlich und habe eng mit den Designer:innen an Look und UX zusammengearbeitet."
+    },
     {
       name: "Doctor's Workspace - BLOODSA",
       pictures: [
